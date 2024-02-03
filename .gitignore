@@ -1,2 +1,4 @@
-/inugami-open-api-catalog.iml
+*.iml
 /.idea/
+/inugami-open-api-front/node_modules/
+/inugami-open-api-api/inugami-open-api-api.iml
