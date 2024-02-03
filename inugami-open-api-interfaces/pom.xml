@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ===============================================================================================================
+    = PARENT
+    ================================================================================================================ -->
+    <parent>
+        <groupId>io.inugami.open.api</groupId>
+        <artifactId>inugami-open-api-catalog</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ===============================================================================================================
+    = PROJECT
+    ================================================================================================================ -->
+    <artifactId>inugami-open-api-interfaces</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- ===============================================================================================================
+    = MODULES
+    ================================================================================================================ -->
+    <modules>
+        <module>inugami-open-api-interfaces-api</module>
+        <module>inugami-open-api-interfaces-core</module>
+        <module>inugami-open-api-interfaces-feign</module>
+    </modules>
+</project>
