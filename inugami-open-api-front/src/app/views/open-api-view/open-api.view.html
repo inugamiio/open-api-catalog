@@ -10,8 +10,12 @@
 
     <div class="content">
 
-
-
+        <div *ngIf="data.paths">
+            <div *ngFor="let endpoint of data.paths">
+                <inu-endpoint [endpoint]="endpoint"></inu-endpoint>
+            </div>
+        </div>
+        
 
 
         <pre >

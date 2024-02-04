@@ -51,6 +51,11 @@ public class ApplicationRestController implements ApplicationRestClient {
     }
 
     @Override
+    public ApplicationDTO create(final ApplicationDTO application) {
+        return null;
+    }
+
+    @Override
     public ApplicationDTO getByUid(final String uid) {
         return applicationDTORestMapper.convertToRestDTO(applicationService.getByUid(uid));
     }
@@ -75,5 +80,20 @@ public class ApplicationRestController implements ApplicationRestClient {
     @Override
     public void delete(final long uid) {
         applicationService.delete(uid);
+    }
+
+    @Override
+    public void option() {
+
+    }
+
+    @Override
+    public void head() {
+
+    }
+
+    @Override
+    public void trace() {
+
     }
 }

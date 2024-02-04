@@ -1,1 +1,140 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --endpoint-font-color: #3b4151;
+    --endpoint-verb-font-color: #ffffff;
+    /** GET*/
+    --endpoint-get-background: #61affe;
+    --endpoint-get-detail-background: #EBF3FB;
+    
+    /** HEAD*/
+    --endpoint-head-background: #9012fe;;
+    --endpoint-head-detail-background: #f0e3fb;
+
+    /** POST*/
+    --endpoint-post-background: #49cc90;
+    --endpoint-post-detail-background: #E8F6F0;
+
+    /** PUT*/
+    --endpoint-put-background: #fca130;
+    --endpoint-put-detail-background: #FBF1E6;
+
+    /** PATCH*/
+    --endpoint-patch-background: #50e3c2;
+    --endpoint-patch-detail-background: #E9F8F5;
+
+    /** DELETE*/
+    --endpoint-delete-background: #f93e3e;
+    --endpoint-delete-detail-background: #FAE7E7;
+
+    /** OPTIONS*/
+    --endpoint-option-background: #0d5aa7;
+    --endpoint-option-detail-background: #E2EAF2;
+
+
+    /** TRACE*/
+    --endpoint-trace-background: #000000;
+    --endpoint-trace-detail-background: #FAFAFA;
+}
+
+.inu-endpoint{
+    font-family: sans-serif;
+    padding: 0.25rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+    border: 1px solid;
+
+    h2{
+        padding: 0;
+        margin: 0;
+    }
+
+    .inu-endpoint-verb{
+        font-size: 80%;
+        border:none;
+        width: 6rem;
+        display: inline-block;
+        margin-right: 1rem;
+        text-align: center;
+        border-radius: 0.2rem;
+        text-transform: uppercase;
+        color: var(--endpoint-verb-font-color);
+    }
+    .inu-endpoint-url{
+        font-size: 80%;
+        font-weight: normal;
+    }
+
+    &.get {
+        background: var(--endpoint-get-detail-background);
+        border-color: var(--endpoint-get-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-get-background);
+        }
+    }
+
+
+    &.head {
+        background: var(--endpoint-head-detail-background);
+        border-color: var(--endpoint-head-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-head-background);
+        }
+    }
+
+    &.post {
+        background: var(--endpoint-post-detail-background);
+        border-color: var(--endpoint-post-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-post-background);
+        }
+    }
+
+    &.put {
+        background: var(--endpoint-put-detail-background);
+        border-color: var(--endpoint-put-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-put-background);
+        }
+    }
+
+    &.patch {
+        background: var(--endpoint-patch-detail-background);
+        border-color: var(--endpoint-patch-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-patch-background);
+        }
+    }
+    
+    &.delete {
+        background: var(--endpoint-delete-detail-background);
+        border-color: var(--endpoint-delete-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-delete-background);
+        }
+    }
+
+        
+    &.options {
+        background: var(--endpoint-option-detail-background);
+        border-color: var(--endpoint-option-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-option-background);
+        }
+    }
+
+    &.trace {
+        background: var(--endpoint-trace-detail-background);
+        border-color: var(--endpoint-trace-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-trace-background);
+        }
+    }
+
+    .inu-endpoint-url{
+        
+    }
+    
+}
