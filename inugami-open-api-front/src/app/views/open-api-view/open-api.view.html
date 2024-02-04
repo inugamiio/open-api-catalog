@@ -1,0 +1,24 @@
+<section *ngIf="data">
+
+    <header *ngIf="data.info">
+        <h1 *ngIf="data.info.title">{{data.info.title}}</h1>
+        <h2 *ngIf="data.info.version">{{data.info.version}}</h2>
+        <p *ngIf="data.info.description">
+            {{data.info.description}}
+        </p>
+    </header>
+
+    <div class="content">
+
+
+
+
+
+        <pre >
+            <code>
+                {{data | json}}
+            </code>
+        </pre>
+
+    </div>
+</section>
