@@ -14,11 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.inugami.open.api.model;
+package io.inugami.open.api.model.open.api;
 
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -28,5 +30,11 @@ import java.io.Serializable;
 @Setter
 @Getter
 public class OpenApiDTO implements Serializable {
-    private String uid;
+    private String                      openapi;
+    private OpenApiInfoDTO              info;
+    private String                      externalDocs;
+    private List<OpenApiServerDTO>      servers;
+    private Map<String, OpenApiPathDTO> paths;
+
+    private OpenApiComponentsDTO components;
 }

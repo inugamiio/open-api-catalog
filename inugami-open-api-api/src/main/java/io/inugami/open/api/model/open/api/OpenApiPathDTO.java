@@ -14,15 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.inugami.open.api.interfaces.core.mapper;
+package io.inugami.open.api.model.open.api;
 
-import io.inugami.open.api.interfaces.api.model.OpenApiDTO;
-import org.mapstruct.Mapper;
-
-@Mapper
-public interface OpenApiDTORestMapper {
-
-    io.inugami.open.api.model.open.api.OpenApiDTO convertToCoreDTO(final OpenApiDTO dto);
-
-    OpenApiDTO convertToRestDTO(final io.inugami.open.api.model.open.api.OpenApiDTO dto);
+public class OpenApiPathDTO {
 }

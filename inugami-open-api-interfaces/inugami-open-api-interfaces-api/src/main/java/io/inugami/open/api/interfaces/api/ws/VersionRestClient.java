@@ -16,15 +16,14 @@
  */
 package io.inugami.open.api.interfaces.api.ws;
 
-import io.inugami.open.api.interfaces.api.model.ApplicationDTO;
-import io.inugami.open.api.interfaces.api.model.OpenApiDTO;
 import io.inugami.open.api.interfaces.api.model.VersionDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RequestMapping(path = "v1/ws/version")
+@RequestMapping(path = "ws/v1/version")
 public interface VersionRestClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +33,7 @@ public interface VersionRestClient {
     VersionDTO getByUid(@PathVariable final String uid);
 
     @GetMapping(path = "{uid}/open-api",produces = MediaType.APPLICATION_JSON_VALUE)
-    OpenApiDTO getOpenApi(@PathVariable final String uid);
+    Map<String, Object> getOpenApi(@PathVariable final String uid);
 
     @PutMapping(path = "{uid}/open-api",produces = MediaType.APPLICATION_JSON_VALUE)
     void updateOpenApi(@PathVariable final String uid);

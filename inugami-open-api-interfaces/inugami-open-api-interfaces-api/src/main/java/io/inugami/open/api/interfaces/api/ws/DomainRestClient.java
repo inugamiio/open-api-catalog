@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(path = "v1/ws/domain")
+@RequestMapping(path = "ws/v1/domain")
 public interface DomainRestClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

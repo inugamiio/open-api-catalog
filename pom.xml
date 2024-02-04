@@ -44,7 +44,7 @@
         <inugami.maven.plugin.analysis.writer.neo4j.password>password
         </inugami.maven.plugin.analysis.writer.neo4j.password>
         <inugami.maven.plugin.analysis.git>true</inugami.maven.plugin.analysis.git>
-
+        <io.swagger.core.v3.version>2.2.20</io.swagger.core.v3.version>
         <com.h2database.version>2.1.214</com.h2database.version>
         <io.github.git-commit-id.version>5.0.0</io.github.git-commit-id.version>
         <io.inugami.version>3.3.3-SNAPSHOT</io.inugami.version>
@@ -65,7 +65,7 @@
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
         <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
         <org.slf4j.version>1.7.36</org.slf4j.version>
-        <org.springdoc.version>1.7.0</org.springdoc.version>
+        <org.springdoc.version>2.2.0</org.springdoc.version>
         <org.springframework.boot.version>3.0.5</org.springframework.boot.version>
 
         <org.springframework.boot.spring-boot-starter-data-neo4j>2.7.12
@@ -182,6 +182,16 @@
                 <version>${io.inugami.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${io.swagger.core.v3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${io.swagger.core.v3.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>javax.annotation</groupId>
@@ -222,10 +232,9 @@
 
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${org.springdoc.version}</version>
             </dependency>
-
 
         </dependencies>
     </dependencyManagement>

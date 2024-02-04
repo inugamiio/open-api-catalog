@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(path = "v1/ws/application")
+@RequestMapping(path = "ws/v1/application")
 public interface ApplicationRestClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

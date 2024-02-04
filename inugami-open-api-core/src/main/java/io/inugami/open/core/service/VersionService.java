@@ -16,13 +16,16 @@
  */
 package io.inugami.open.core.service;
 
-import io.inugami.open.api.model.OpenApiDTO;
 import io.inugami.open.api.model.VersionDTO;
+import io.inugami.open.api.service.IOpenApiDAO;
 import io.inugami.open.api.service.IVersionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
+@RequiredArgsConstructor
 @Service
 public class VersionService implements IVersionService {
 
@@ -30,7 +33,7 @@ public class VersionService implements IVersionService {
     // =================================================================================================================
     // ATTRIBUTES
     // =================================================================================================================
-
+    private final IOpenApiDAO openApiDAO;
 
     // =================================================================================================================
     // READ
@@ -46,8 +49,8 @@ public class VersionService implements IVersionService {
     }
 
     @Override
-    public OpenApiDTO getOpenApi(final String uid) {
-        return null;
+    public Map<String, Object> getOpenApi(final String uid) {
+        return openApiDAO.readOpenApi("http://localhost:8080/v3/api-docs");
     }
 
     // =================================================================================================================

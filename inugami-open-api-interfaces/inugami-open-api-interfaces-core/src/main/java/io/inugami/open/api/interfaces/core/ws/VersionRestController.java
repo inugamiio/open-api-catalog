@@ -16,7 +16,6 @@
  */
 package io.inugami.open.api.interfaces.core.ws;
 
-import io.inugami.open.api.interfaces.api.model.OpenApiDTO;
 import io.inugami.open.api.interfaces.api.model.VersionDTO;
 import io.inugami.open.api.interfaces.api.ws.VersionRestClient;
 import io.inugami.open.api.interfaces.core.mapper.OpenApiDTORestMapper;
@@ -26,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -55,8 +55,8 @@ public class VersionRestController implements VersionRestClient {
     }
 
     @Override
-    public OpenApiDTO getOpenApi(final String uid) {
-        return openApiDTORestMapper.convertToRestDTO(versionService.getOpenApi(uid));
+    public Map<String,Object> getOpenApi(final String uid) {
+        return versionService.getOpenApi(uid);
     }
 
     // =================================================================================================================

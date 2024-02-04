@@ -16,5 +16,11 @@
  */
 package io.inugami.open.api.service;
 
+import io.inugami.open.api.model.open.api.OpenApiDTO;
+
+import java.util.Map;
+
 public interface IOpenApiDAO {
+
+    Map<String, Object> readOpenApi(final String url);
 }

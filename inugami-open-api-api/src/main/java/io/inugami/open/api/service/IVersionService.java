@@ -16,10 +16,11 @@
  */
 package io.inugami.open.api.service;
 
-import io.inugami.open.api.model.OpenApiDTO;
+import io.inugami.open.api.model.open.api.OpenApiDTO;
 import io.inugami.open.api.model.VersionDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IVersionService {
 
@@ -27,7 +28,7 @@ public interface IVersionService {
 
     VersionDTO getByUid(final String uid);
 
-    OpenApiDTO getOpenApi(final String uid);
+    Map<String, Object> getOpenApi(final String uid);
 
     void updateOpenApi(final String uid);
 
