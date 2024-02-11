@@ -78,10 +78,15 @@ export interface OpenApiPathEndpointResponse{
     schema?:OpenApiSchema;
 }
 
-
+/** https://swagger.io/specification/#paths-object */
 export interface OpenApiPathEndpoint{
     url:string;
     verb:string;
+    globalSummary?:string;
+    globalDescription?:string;
+    globalTags?:string;
+    summary?:string;
+    description?:string;
     tags?: string[]
     operationId?:string;
     parameters?:OpenApiPathEndpointParameter[];

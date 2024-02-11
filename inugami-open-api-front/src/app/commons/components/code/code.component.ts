@@ -13,7 +13,7 @@ export class CodeComponent {
     @Input()
     public data: string | null = null;
     @Input()
-    public type: string | null = null;
+    public type: string  = 'json';
     @Input()
     public schemas: OpenApiComponentSchema[] | null = null;
     @Input()
@@ -92,12 +92,10 @@ export class CodeComponent {
                 for(let field of currentSchema.properties){
                     if(field.name){
                         if('object'==field.type){
-                            console.log('resolveSchemaObject', field);
                             if(field.items){
                                 let subType :any|null= null;
                                 const currentType :string = field.items.type?field.items.type:'void';
                                 if(cursor==null || cursor.indexOf(currentType)==-1){
-                                    console.log('getSchemaObject',currentType);
                                     subType =this.resolveSchemaObject(currentType, `${objectRef}.${currentType}`);
                                 }else{
                                     subType='<'+field.items.type+'>';
@@ -114,7 +112,6 @@ export class CodeComponent {
                                 let subType :any|null= null;
                                 const currentType :string = field.items.type?field.items.type:'void';
                                 if(cursor==null || cursor.indexOf(currentType)==-1){
-                                    console.log('getSchemaObject',currentType);
                                     subType =this.resolveSchemaObject(currentType, `${objectRef}.${currentType}`);
                                 }else{
                                     subType='<'+field.items.type+'>';

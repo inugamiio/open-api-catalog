@@ -28,7 +28,6 @@ public interface ApplicationRestClient {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     List<ApplicationDTO> getAll();
 
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     ApplicationDTO create( @RequestBody final ApplicationDTO application);
 
@@ -44,10 +43,4 @@ public interface ApplicationRestClient {
     @DeleteMapping(path = "{uid}")
     void delete(@PathVariable final long uid);
 
-    @RequestMapping(method = RequestMethod.OPTIONS)
-    void option();
-    @RequestMapping(method = RequestMethod.HEAD)
-    void head();
-    @RequestMapping(method = RequestMethod.TRACE)
-    void trace();
 }

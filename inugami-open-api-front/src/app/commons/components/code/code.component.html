@@ -1,6 +1,6 @@
 <ng-container *ngIf="data">
     <pre>
-        <code>
-{{data}}</code>
+        <code [languages]="[type]" [highlight]="data">
+        </code>
     </pre>
 </ng-container>

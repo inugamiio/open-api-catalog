@@ -10,6 +10,42 @@
     <div class="content-toggle" [class.display]="display">
 
        
+       <!--============================================================================================================
+        = INFORMATION
+       ============================================================================================================-->
+       <fieldset *ngIf="parameters && parameters.length>0" class="information">
+        <label>Parameters</label>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Exemples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let parameter of parameters; let index = index; let isFirst = first; let isOdd = odd;">
+                        <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
+                            <td>
+                                <span>{{parameter.name}}</span>
+                                <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
+                            </td>
+                            <td>
+                                <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
+                                
+                            </td>
+                            <td>
+                                <inu-code [data]="parameter.example"></inu-code>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    
+                </tbody>
+            </table>
+        </div>
+   </fieldset>
 
        <!--============================================================================================================
         = PARAMETERS
@@ -96,6 +132,16 @@
                                     [objectRefType]="endpoint.requestBody.schema.type"
                                     [schemas]="schemas"></inu-code>
                     </ng-container>
+                    "active": true,
+                    "domainUid": "string",
+                    "name": "string",
+                    "tags": [
+                        "string"
+                    ],
+                    "type": "string",
+                    "uid": "string",
+                    "version": [
+                        [
                     <ng-container *ngIf="endpoint.requestBody.schema.type && !endpoint.requestBody.schema.ref">{{endpoint.requestBody.schema.type}}</ng-container>
                 </div>
                 
@@ -109,6 +155,7 @@
             <label>Response</label>
             
             <div class="content">
+
                 <table>
                     <tbody>
                         <tr>

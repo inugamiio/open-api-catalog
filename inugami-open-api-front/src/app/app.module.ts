@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HIGHLIGHT_OPTIONS,HighlightModule } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonsModule } from './commons/commons.module';
@@ -17,9 +17,16 @@ import { OpenApiView } from './views/open-api-view/open-api.view';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonsModule
+    CommonsModule,
+    HighlightModule
   ],
   providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        fullLibraryLoader: () => import('highlight.js')
+      }
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptor,

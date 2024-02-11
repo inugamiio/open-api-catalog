@@ -16,6 +16,7 @@
  */
 package io.inugami.open.api.interfaces.core.ws;
 
+import io.inugami.api.exceptions.Asserts;
 import io.inugami.open.api.interfaces.api.model.VersionDTO;
 import io.inugami.open.api.interfaces.api.ws.VersionRestClient;
 import io.inugami.open.api.interfaces.core.mapper.OpenApiDTORestMapper;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+
+import static io.inugami.open.api.domain.version.exception.VersionError.READ_NOT_FOUND_VERSIONS;
 
 @RequiredArgsConstructor
 @RestController

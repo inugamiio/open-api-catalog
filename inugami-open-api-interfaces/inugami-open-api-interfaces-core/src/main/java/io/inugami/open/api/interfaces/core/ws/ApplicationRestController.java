@@ -82,18 +82,4 @@ public class ApplicationRestController implements ApplicationRestClient {
         applicationService.delete(uid);
     }
 
-    @Override
-    public void option() {
-
-    }
-
-    @Override
-    public void head() {
-
-    }
-
-    @Override
-    public void trace() {
-
-    }
 }

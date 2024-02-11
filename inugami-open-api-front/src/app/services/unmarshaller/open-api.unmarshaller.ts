@@ -15,6 +15,8 @@ import {
     OpenApiServer 
 } from 'src/app/commons/models/open-api.model';
 
+const VERBS :string[]=  ['get','put','post', 'delete', 'options', 'patch','trace'];
+
 @Injectable({providedIn: 'root'})
 export class OpenApiUnmarshaller {
 
@@ -23,6 +25,7 @@ export class OpenApiUnmarshaller {
     // API
     // =================================================================================================================
     public convertToOpenApi(response:any):OpenApi{
+        console.log('convertToOpenApi',JSON.stringify(response,null,4));
         const result = {
             openapi: response.openapi,
             components: this.unmarshallComponents(response.components),
@@ -168,21 +171,29 @@ export class OpenApiUnmarshaller {
             verbKeys.sort();
 
             for(let verbKey of verbKeys){
-                const openApiEndpoint = path[verbKey];
-                const endpoint :OpenApiPathEndpoint = {
-                    url: key,
-                    verb: verbKey,
-                    tags: openApiEndpoint.tags,
-                    operationId: openApiEndpoint.operationId,
-                    parameters: this.unmarshallEndpointParameters(openApiEndpoint.parameters),
-                    requestBody: this.unmarshallEndpointRequestBody(openApiEndpoint.requestBody),
-                    responses: this.unmarshallEndpointResponse(openApiEndpoint.responses),
-                };
-                result.push(endpoint);
+                if(this.isVerb(verbKey)){
+                    const openApiEndpoint = path[verbKey];
+                    const endpoint :OpenApiPathEndpoint = {
+                        url: key,
+                        verb: verbKey,
+                        tags: openApiEndpoint.tags,
+                        operationId: openApiEndpoint.operationId,
+                        summary: openApiEndpoint.summary,
+                        description: openApiEndpoint.description,
+                        parameters: this.unmarshallEndpointParameters(openApiEndpoint.parameters),
+                        requestBody: this.unmarshallEndpointRequestBody(openApiEndpoint.requestBody),
+                        responses: this.unmarshallEndpointResponse(openApiEndpoint.responses),
+                    };
+                    result.push(endpoint);
+                }
             }
         }
 
         return result;
+    }
+    
+    private isVerb(verb:string):boolean{
+        return verb==undefined||verb==null?false:VERBS.indexOf(verb)!=-1
     }
 
 
@@ -260,7 +271,7 @@ export class OpenApiUnmarshaller {
                     let ref : string|undefined = rawSchema['$ref']
                     if(rawSchema['items']){
                         let items : any =rawSchema['items']
-                        ref =items? items['$ref']:undefined;
+                        ref  =items? items['$ref']:undefined;
                     }
                     
                     schema = {
@@ -268,8 +279,6 @@ export class OpenApiUnmarshaller {
                         ref: ref
                     }
                 }
-
-                console.log('unmarshallEndpointResponse',[response.content,schema]);
             }
 
 
