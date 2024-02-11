@@ -1,9 +1,142 @@
 <article *ngIf="endpoint" [class]="styleclass">
     <header>
-        <h2>
+        <h2 (click)="toggleDisplay()">
             <span class="inu-endpoint-verb">{{endpoint.verb}}</span>
             <span class="inu-endpoint-url">{{endpoint.url}}</span>
         </h2>
+        <button class="open" (click)="toggleDisplay()" [class.displayStatus]="display"></button>
     </header>
 
+    <div class="content-toggle" [class.display]="display">
+
+       
+
+       <!--============================================================================================================
+        = PARAMETERS
+       ============================================================================================================-->
+        <fieldset *ngIf="parameters && parameters.length>0" class="parameters">
+            <label>Parameters</label>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Exemples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let parameter of parameters; let index = index; let isFirst = first; let isOdd = odd;">
+                            <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
+                                <td>
+                                    <span>{{parameter.name}}</span>
+                                    <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
+                                </td>
+                                <td>
+                                    <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
+                                    
+                                </td>
+                                <td>
+                                    <inu-code [data]="parameter.example"></inu-code>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        
+                    </tbody>
+                </table>
+            </div>
+       </fieldset>
+
+        <!--============================================================================================================
+        = OPTIONS
+        ============================================================================================================-->
+        <fieldset *ngIf="options && options.length>0" class="options">
+            <label>Options</label>
+            <div class="content">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let parameter of options; let index = index; let isFirst = first; let isOdd = odd;">
+                            <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
+                                <td>
+                                    <span>{{parameter.name}}</span>
+                                    <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
+                                </td>
+                                <td>
+                                    <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
+                                    
+                                </td>
+                                <td>
+                                    <inu-code [data]="parameter.example"></inu-code>
+                                </td>
+                            </tr>
+                        </ng-container>
+            
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <!--============================================================================================================
+        = PARAMETERS
+        ============================================================================================================-->
+        <fieldset *ngIf="endpoint.requestBody" class="request">
+            <label>Request</label>
+            <div class="content">
+                <div class="description">{{endpoint.requestBody.description}}</div>
+                <div class="content-type">{{endpoint.requestBody.contentType}}</div>
+                <div class="schema" *ngIf="endpoint.requestBody.schema">
+                    <ng-container *ngIf="endpoint.requestBody.schema.ref">
+                        <inu-code [objectRef]="endpoint.requestBody.schema.ref"
+                                    [objectRefType]="endpoint.requestBody.schema.type"
+                                    [schemas]="schemas"></inu-code>
+                    </ng-container>
+                    <ng-container *ngIf="endpoint.requestBody.schema.type && !endpoint.requestBody.schema.ref">{{endpoint.requestBody.schema.type}}</ng-container>
+                </div>
+                
+            </div>
+        </fieldset>
+
+        <!--============================================================================================================
+        = RESPONSE
+        ============================================================================================================-->
+        <fieldset *ngIf="endpoint.responses  && endpoint.responses.length>0" class="response">
+            <label>Response</label>
+            
+            <div class="content">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Status</th>
+                            <th>Description</th>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <ng-container *ngFor="let response of endpoint.responses; let index = index; let isFirst = first; let isOdd = odd;">
+                            <tr [class]="getRowClass(index,isFirst, isOdd)">
+                                <td class="http-code">{{response.status}}</td>
+                                <td class="description-content">
+                                    <div class="description">{{response.description}}</div>
+                                    <div class="content-type">{{response.contentType}}</div>
+                                    <div class="schema" *ngIf="response.schema">
+                                        <ng-container *ngIf="response.schema.ref">
+                                            <inu-code [objectRef]="response.schema.ref"
+                                                      [objectRefType]="response.schema.type"
+                                                      [schemas]="schemas"></inu-code>
+                                        </ng-container>
+                                        <ng-container *ngIf="response.schema.type && !response.schema.ref">{{response.schema.type}}</ng-container>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
 </article>

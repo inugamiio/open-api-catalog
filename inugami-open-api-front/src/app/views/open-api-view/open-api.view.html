@@ -12,17 +12,8 @@
 
         <div *ngIf="data.paths">
             <div *ngFor="let endpoint of data.paths">
-                <inu-endpoint [endpoint]="endpoint"></inu-endpoint>
+                <inu-endpoint [endpoint]="endpoint" [schemas]="schemas"></inu-endpoint>
             </div>
         </div>
-        
-
-
-        <pre >
-            <code>
-                {{data | json}}
-            </code>
-        </pre>
-
     </div>
 </section>

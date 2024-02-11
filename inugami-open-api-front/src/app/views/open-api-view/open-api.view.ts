@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VersionRestService } from 'src/app/services/connector/version.rest-service';
-import { OpenApi } from 'src/app/commons/models/open-api.model';
+import { OpenApi, OpenApiComponentSchema } from 'src/app/commons/models/open-api.model';
 
 @Component({
   templateUrl: './open-api.view.html',
@@ -37,5 +37,13 @@ export class OpenApiView implements OnInit {
     // ACTION
     // =================================================================================================================
 
+
+    // =================================================================================================================
+    // GETTERS
+    // =================================================================================================================
+
+    get schemas() :  OpenApiComponentSchema[]{
+      return this.data && this.data.components && this.data.components.schemas ?  this.data.components.schemas : [];
+    }
 
 }

@@ -240,23 +240,36 @@ export class OpenApiUnmarshaller {
         }
         const result :OpenApiPathEndpointResponse[]= [];
         const keys = Object.keys(value);
+       
         keys.sort();
         for(let key of keys){
             const response = value[key];
             let contentType:string|undefined;
             let schema:OpenApiSchema|undefined;
 
+      
             if(response.content){
+                
+
                 contentType = Object.keys(response.content)[0];
                 const rawSchema :any= response.content[contentType].schema;
+
                 if(rawSchema){
                     let type : string|undefined =rawSchema.type;
-                    let ref : string|undefined =rawSchema['$ref'];
+
+                    let ref : string|undefined = rawSchema['$ref']
+                    if(rawSchema['items']){
+                        let items : any =rawSchema['items']
+                        ref =items? items['$ref']:undefined;
+                    }
+                    
                     schema = {
                         type: type ,
                         ref: ref
                     }
                 }
+
+                console.log('unmarshallEndpointResponse',[response.content,schema]);
             }
 
 
@@ -267,6 +280,7 @@ export class OpenApiUnmarshaller {
                 schema:schema
             });
         }
+
         return result;
     }
 }

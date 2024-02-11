@@ -35,43 +35,118 @@
     /** TRACE*/
     --endpoint-trace-background: #000000;
     --endpoint-trace-detail-background: #FAFAFA;
+
+    --danger: #dc0000;
+    --danger-dark: #b50000;
+    --danger-light: #ff4141;
+    --warning: #ff6600;
+    --warning-dark: #b54800;
+    --warning-light: #ff9900;
+    --success: #009100;
+    --success-dark: #005b00;
+    --success-light: #9ade00;
+    --info:#0084c8;
+    --info-dark:#005c94;
+    --info-light:#19aeff;
+    --neutral:#999999;
+    --neutral-dark:#666666;
+    --neutral-light:#cccccc;
 }
 
+/**********************************************************************************************************************
+* inu-endpoint
+**********************************************************************************************************************/
 .inu-endpoint{
     font-family: sans-serif;
-    padding: 0.25rem;
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 0.5rem;
     border-radius: 0.2rem;
     border: 1px solid;
 
-    h2{
-        padding: 0;
-        margin: 0;
-    }
+    header{
+        padding: 0.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        h2{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            cursor: pointer;
+            .inu-endpoint-verb{
+                font-size: 80%;
+                border:none;
+                width: 6rem;
+                display: inline-block;
+                margin-right: 1rem;
+                text-align: center;
+                border-radius: 0.2rem;
+                text-transform: uppercase;
+                color: var(--endpoint-verb-font-color);
+            }
 
-    .inu-endpoint-verb{
-        font-size: 80%;
-        border:none;
-        width: 6rem;
-        display: inline-block;
-        margin-right: 1rem;
-        text-align: center;
-        border-radius: 0.2rem;
-        text-transform: uppercase;
-        color: var(--endpoint-verb-font-color);
+            .inu-endpoint-url{
+                font-size: 80%;
+                font-weight: normal;
+            }
+        }
+
+        button.open{
+
+        }
     }
-    .inu-endpoint-url{
-        font-size: 80%;
-        font-weight: normal;
+    
+    .content-toggle{
+        display: none;
+        &.display{
+            display: flex;
+            flex-direction: column;
+        }
+        fieldset{
+            border: none;
+            margin-top: 1rem;
+            padding: 0;
+
+            label{
+                font-weight: bold;
+                background-color: #ffffff;
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid;
+                border-top: 1px solid;
+            }
+        }
+        table{
+            width: 100%;
+            thead{
+                tr{
+                    text-align: left;
+                    border-bottom: 1px solid;
+                }
+            }
+            tbody{
+                tr{
+                    text-align: left;
+                }
+            }
+    
+        }
+        
     }
+    
+    
 
     &.get {
         background: var(--endpoint-get-detail-background);
         border-color: var(--endpoint-get-background);
         .inu-endpoint-verb{
             background-color: var(--endpoint-get-background);
+        }
+        label{
+            border-color: var(--endpoint-get-background);
         }
     }
 
@@ -82,6 +157,9 @@
         .inu-endpoint-verb{
             background-color: var(--endpoint-head-background);
         }
+        label{
+            border-color: var(--endpoint-head-background);
+        }
     }
 
     &.post {
@@ -89,6 +167,9 @@
         border-color: var(--endpoint-post-background);
         .inu-endpoint-verb{
             background-color: var(--endpoint-post-background);
+        }
+        label{
+            border-color: var(--endpoint-post-background);
         }
     }
 
@@ -98,6 +179,9 @@
         .inu-endpoint-verb{
             background-color: var(--endpoint-put-background);
         }
+        label{
+            border-color: var(--endpoint-put-background);
+        }
     }
 
     &.patch {
@@ -106,6 +190,9 @@
         .inu-endpoint-verb{
             background-color: var(--endpoint-patch-background);
         }
+        label{
+            border-color: var(--endpoint-patch-background);
+        }
     }
     
     &.delete {
@@ -113,6 +200,9 @@
         border-color: var(--endpoint-delete-background);
         .inu-endpoint-verb{
             background-color: var(--endpoint-delete-background);
+        }
+        label{
+            border-color: var(--endpoint-delete-background);
         }
     }
 
@@ -123,6 +213,9 @@
         .inu-endpoint-verb{
             background-color: var(--endpoint-option-background);
         }
+        label{
+            border-color: var(--endpoint-option-background);
+        }
     }
 
     &.trace {
@@ -131,10 +224,24 @@
         .inu-endpoint-verb{
             background-color: var(--endpoint-trace-background);
         }
+        label{
+            border-color: var(--endpoint-trace-background);
+        }
+
     }
 
-    .inu-endpoint-url{
+    span.required{
+        color: var(--danger);
+        &::before{
+            content: '*';
         
+        }
+        .label::before{
+            content: "required";
+            font-size: 75%;
+            vertical-align: super;
+            margin-left: 0.2rem;
+        }
     }
     
 }

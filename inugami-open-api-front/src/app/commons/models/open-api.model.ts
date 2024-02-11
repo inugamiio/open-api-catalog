@@ -43,13 +43,31 @@ export interface OpenApiPathEndpointParameter{
     name?:string;
     in?:string;
     required?:boolean;
+    description?:string;
+    deprecated?:boolean;
+    allowEmptyValue?:boolean;
     schema?:OpenApiSchema;
+    style?:string;
+    explode?:boolean;
+    allowReserved?:boolean;
+    example?:any;
+    examples?:any; //TODO : check real representation 
+
+}
+
+export interface MediaTypeObject{
+    schema?:OpenApiSchema;
+    example?:any;
+    examples?:any;
+    encoding?:any;
 }
 
 export interface OpenApiPathEndpointRequestBody{
     contentType?:string;
     required?:boolean;
     schema?:OpenApiSchema;
+    description?:string;
+    content?:MediaTypeObject;
 }
 
 
