@@ -14,75 +14,23 @@
         = INFORMATION
        ============================================================================================================-->
        <fieldset *ngIf="parameters && parameters.length>0" class="information">
-        <label>Parameters</label>
-        <div class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Exemples</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let parameter of parameters; let index = index; let isFirst = first; let isOdd = odd;">
-                        <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
-                            <td>
-                                <span>{{parameter.name}}</span>
-                                <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
-                            </td>
-                            <td>
-                                <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
-                                
-                            </td>
-                            <td>
-                                <inu-code [data]="parameter.example"></inu-code>
-                            </td>
-                        </tr>
-                    </ng-container>
-                    
-                </tbody>
-            </table>
-        </div>
-   </fieldset>
-
-       <!--============================================================================================================
-        = PARAMETERS
-       ============================================================================================================-->
-        <fieldset *ngIf="parameters && parameters.length>0" class="parameters">
-            <label>Parameters</label>
+            <label>Information</label>
             <div class="content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Exemples</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let parameter of parameters; let index = index; let isFirst = first; let isOdd = odd;">
-                            <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
-                                <td>
-                                    <span>{{parameter.name}}</span>
-                                    <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
-                                </td>
-                                <td>
-                                    <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
-                                    
-                                </td>
-                                <td>
-                                    <inu-code [data]="parameter.example"></inu-code>
-                                </td>
-                            </tr>
-                        </ng-container>
-                        
-                    </tbody>
-                </table>
+                <inu-endpoint-parameters [data]="parameters"></inu-endpoint-parameters>
             </div>
-       </fieldset>
+        </fieldset>
+
+        <!--============================================================================================================
+        = HEADERS
+        ============================================================================================================-->
+        <fieldset *ngIf="headers && headers.length>0" class="headers">
+            <label>Headers</label>
+            <div class="content">
+                <inu-endpoint-parameters [data]="headers"></inu-endpoint-parameters>
+            </div>
+        </fieldset>
+
+
 
         <!--============================================================================================================
         = OPTIONS
@@ -90,36 +38,15 @@
         <fieldset *ngIf="options && options.length>0" class="options">
             <label>Options</label>
             <div class="content">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let parameter of options; let index = index; let isFirst = first; let isOdd = odd;">
-                            <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
-                                <td>
-                                    <span>{{parameter.name}}</span>
-                                    <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
-                                </td>
-                                <td>
-                                    <span *ngIf="parameter.schema?.type">{{parameter.schema?.type}}</span>
-                                    
-                                </td>
-                                <td>
-                                    <inu-code [data]="parameter.example"></inu-code>
-                                </td>
-                            </tr>
-                        </ng-container>
-            
-                    </tbody>
-                </table>
+                <inu-endpoint-parameters [data]="options"></inu-endpoint-parameters>
             </div>
         </fieldset>
 
+      
+
+
         <!--============================================================================================================
-        = PARAMETERS
+        = REQUEST
         ============================================================================================================-->
         <fieldset *ngIf="endpoint.requestBody" class="request">
             <label>Request</label>
@@ -132,16 +59,7 @@
                                     [objectRefType]="endpoint.requestBody.schema.type"
                                     [schemas]="schemas"></inu-code>
                     </ng-container>
-                    "active": true,
-                    "domainUid": "string",
-                    "name": "string",
-                    "tags": [
-                        "string"
-                    ],
-                    "type": "string",
-                    "uid": "string",
-                    "version": [
-                        [
+                    
                     <ng-container *ngIf="endpoint.requestBody.schema.type && !endpoint.requestBody.schema.ref">{{endpoint.requestBody.schema.type}}</ng-container>
                 </div>
                 
@@ -176,7 +94,6 @@
                                                       [objectRefType]="response.schema.type"
                                                       [schemas]="schemas"></inu-code>
                                         </ng-container>
-                                        <ng-container *ngIf="response.schema.type && !response.schema.ref">{{response.schema.type}}</ng-container>
                                     </div>
                                 </td>
                             </tr>

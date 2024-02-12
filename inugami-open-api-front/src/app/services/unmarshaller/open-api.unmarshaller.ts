@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+    Example,
     OpenApi,
     OpenApiComponent,
     OpenApiComponentSchema,
@@ -215,9 +216,55 @@ export class OpenApiUnmarshaller {
                 name:param.name,
                 in:param.in,
                 required:param.required,
+                description:param.description,
+                deprecated:param.deprecated,
+                allowEmptyValue:param.allowEmptyValue,
+                style:param.style,
+                explode:param.explode,
+                allowReserved:param.allowReserved,
+                example:param.example,
+                examples: this.unmarshallExamples(param.examples),
                 schema:schema
             });
         }
+
+        return result;
+    }
+    private unmarshallExamples(value:any):Example[]{
+        const result : Example[] = [];
+        if(!value){
+            return result;
+        }
+
+        const keys :string[] = Object.keys(value);
+        keys.sort();
+        for(let key of keys){
+            result.push(this.unmarshallExample(key,value[key]));
+        }
+        return result;
+    }
+    private unmarshallExample(name:string, value:any):Example{
+        const result:Example = {
+            name:name,
+            summary:value.summary,
+            description:value.description,
+            value:value.value,
+            externalValue:value.externalValue
+        };
+
+        let extension :any= {};
+
+        const keys = Object.keys(value);
+        keys.sort();
+        for(let key of keys){
+            if(key.startsWith('x-')){
+                const field = key.substring(2);
+                if(field){
+                    extension[field]=value[key];
+                }
+            }
+        }
+
 
         return result;
     }

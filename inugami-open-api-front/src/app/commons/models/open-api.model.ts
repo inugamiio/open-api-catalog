@@ -39,6 +39,14 @@ export interface OpenApiSchema{
     ref?:string;
 }
 
+export interface Example{
+    name:string;
+    summary?:string; 
+    description?:string;
+    value?:any;
+    externalValue?:string;
+    extension?:any;
+}
 export interface OpenApiPathEndpointParameter{
     name?:string;
     in?:string;
@@ -51,7 +59,7 @@ export interface OpenApiPathEndpointParameter{
     explode?:boolean;
     allowReserved?:boolean;
     example?:any;
-    examples?:any; //TODO : check real representation 
+    examples?:Example[]; //TODO : check real representation 
 
 }
 

@@ -19,8 +19,9 @@ export class EndpointComponent implements OnInit {
     @Input()
     public display:boolean=false;
 
-    parameters?:OpenApiPathEndpointParameter[]|null = null;
+    headers?:OpenApiPathEndpointParameter[]|null = null;
     options?:OpenApiPathEndpointParameter[]|null = null;
+    parameters?:OpenApiPathEndpointParameter[]|null = null;
     
     /**************************************************************************
     * CONSTRUCTOR
@@ -32,11 +33,16 @@ export class EndpointComponent implements OnInit {
         if(this.endpoint && this.endpoint.parameters){
             this.parameters= [];
             this.options = [];
+            this.headers=[];
 
-            for(let param of this.endpoint.parameters){
+            for(let param of this.endpoint.parameters){ 
                 if('path'==param.in){
                     this.parameters.push(param);
-                }else{
+                }
+                else if('header'==param.in){
+                    this.headers.push(param);
+                }
+                else{
                     this.options.push(param);
                 }
             }
