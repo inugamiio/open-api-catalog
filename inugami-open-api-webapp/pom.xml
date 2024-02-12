@@ -19,9 +19,20 @@
     <packaging>jar</packaging>
 
     <!-- ===============================================================================================================
+    = PROPERTIES
+    ================================================================================================================ -->
+    <properties>
+        <super.springboot.skip>false</super.springboot.skip>
+    </properties>
+
+    <!-- ===============================================================================================================
     = DEPENDENCIES
     ================================================================================================================ -->
     <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.inugami.open.api</groupId>
             <artifactId>inugami-open-api-api</artifactId>
@@ -43,6 +54,43 @@
             <artifactId>inugami-open-api-interfaces-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.inugami</groupId>
+            <artifactId>inugami_logs_obfuscator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.inugami.monitoring</groupId>
+            <artifactId>inugami_monitoring_springboot</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 </project>

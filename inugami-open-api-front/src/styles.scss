@@ -1,0 +1,252 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --endpoint-font-color: #3b4151;
+    --endpoint-verb-font-color: #ffffff;
+    /** GET*/
+    --endpoint-get-background: #61affe;
+    --endpoint-get-detail-background: #EBF3FB;
+    
+    /** HEAD*/
+    --endpoint-head-background: #9012fe;;
+    --endpoint-head-detail-background: #f0e3fb;
+
+    /** POST*/
+    --endpoint-post-background: #49cc90;
+    --endpoint-post-detail-background: #E8F6F0;
+
+    /** PUT*/
+    --endpoint-put-background: #fca130;
+    --endpoint-put-detail-background: #FBF1E6;
+
+    /** PATCH*/
+    --endpoint-patch-background: #50e3c2;
+    --endpoint-patch-detail-background: #E9F8F5;
+
+    /** DELETE*/
+    --endpoint-delete-background: #f93e3e;
+    --endpoint-delete-detail-background: #FAE7E7;
+
+    /** OPTIONS*/
+    --endpoint-option-background: #0d5aa7;
+    --endpoint-option-detail-background: #E2EAF2;
+
+
+    /** TRACE*/
+    --endpoint-trace-background: #000000;
+    --endpoint-trace-detail-background: #FAFAFA;
+
+    --danger: #dc0000;
+    --danger-dark: #b50000;
+    --danger-light: #ff4141;
+    --warning: #ff6600;
+    --warning-dark: #b54800;
+    --warning-light: #ff9900;
+    --success: #009100;
+    --success-dark: #005b00;
+    --success-light: #9ade00;
+    --info:#0084c8;
+    --info-dark:#005c94;
+    --info-light:#19aeff;
+    --neutral:#999999;
+    --neutral-dark:#666666;
+    --neutral-light:#cccccc;
+}
+
+/**********************************************************************************************************************
+* inu-endpoint
+**********************************************************************************************************************/
+.inu-endpoint{
+    font-family: sans-serif;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+    border: 1px solid;
+
+    header{
+        padding: 0.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        h2{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            cursor: pointer;
+            .inu-endpoint-verb{
+                font-size: 80%;
+                border:none;
+                width: 6rem;
+                display: inline-block;
+                margin-right: 1rem;
+                text-align: center;
+                border-radius: 0.2rem;
+                text-transform: uppercase;
+                color: var(--endpoint-verb-font-color);
+            }
+
+            .inu-endpoint-url{
+                font-size: 80%;
+                font-weight: normal;
+            }
+        }
+
+        button.open{
+
+        }
+    }
+    
+    .content-toggle{
+        display: none;
+        &.display{
+            display: flex;
+            flex-direction: column;
+        }
+        fieldset{
+            border: none;
+            margin-top: 1rem;
+            padding: 0;
+
+            label{
+                font-weight: bold;
+                background-color: #ffffff;
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid;
+                border-top: 1px solid;
+            }
+        }
+        table{
+            width: 100%;
+            thead{
+                tr{
+                    text-align: left;
+                    border-bottom: 1px solid;
+                }
+            }
+            tbody{
+                tr{
+                    text-align: left;
+                }
+            }
+    
+        }
+        
+    }
+    
+    
+
+    &.get {
+        background: var(--endpoint-get-detail-background);
+        border-color: var(--endpoint-get-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-get-background);
+        }
+        label{
+            border-color: var(--endpoint-get-background);
+        }
+    }
+
+
+    &.head {
+        background: var(--endpoint-head-detail-background);
+        border-color: var(--endpoint-head-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-head-background);
+        }
+        label{
+            border-color: var(--endpoint-head-background);
+        }
+    }
+
+    &.post {
+        background: var(--endpoint-post-detail-background);
+        border-color: var(--endpoint-post-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-post-background);
+        }
+        label{
+            border-color: var(--endpoint-post-background);
+        }
+    }
+
+    &.put {
+        background: var(--endpoint-put-detail-background);
+        border-color: var(--endpoint-put-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-put-background);
+        }
+        label{
+            border-color: var(--endpoint-put-background);
+        }
+    }
+
+    &.patch {
+        background: var(--endpoint-patch-detail-background);
+        border-color: var(--endpoint-patch-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-patch-background);
+        }
+        label{
+            border-color: var(--endpoint-patch-background);
+        }
+    }
+    
+    &.delete {
+        background: var(--endpoint-delete-detail-background);
+        border-color: var(--endpoint-delete-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-delete-background);
+        }
+        label{
+            border-color: var(--endpoint-delete-background);
+        }
+    }
+
+        
+    &.options {
+        background: var(--endpoint-option-detail-background);
+        border-color: var(--endpoint-option-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-option-background);
+        }
+        label{
+            border-color: var(--endpoint-option-background);
+        }
+    }
+
+    &.trace {
+        background: var(--endpoint-trace-detail-background);
+        border-color: var(--endpoint-trace-background);
+        .inu-endpoint-verb{
+            background-color: var(--endpoint-trace-background);
+        }
+        label{
+            border-color: var(--endpoint-trace-background);
+        }
+
+    }
+
+    span.required{
+        color: var(--danger);
+        &::before{
+            content: '*';
+        
+        }
+        .label::before{
+            content: "required";
+            font-size: 75%;
+            vertical-align: super;
+            margin-left: 0.2rem;
+        }
+    }
+    
+}
+
+code{
+    border-radius: 0.3rem;
+}
+

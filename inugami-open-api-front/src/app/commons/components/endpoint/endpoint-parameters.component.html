@@ -1,0 +1,29 @@
+<ng-container *ngIf="data">
+    {{data|json}}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Exemples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let parameter of data; let index = index; let isFirst = first; let isOdd = odd;">
+                <tr  [class]="getRowClass(index,isFirst, isOdd , (parameter.deprecated?'deprecated': ''))">
+                    <td>
+                        <span>{{parameter.name}}</span>
+                        <span *ngIf="parameter.required" class="required"><span class="label"></span></span>
+                    </td>
+                    <td>{{parameter.schema?.type}}</td>
+                    <td>{{parameter.description}}</td>
+                    <td>
+                        <inu-code [data]="parameter.example"></inu-code>
+                    </td>
+                </tr>
+            </ng-container>
+            
+        </tbody>
+    </table>
+</ng-container>
