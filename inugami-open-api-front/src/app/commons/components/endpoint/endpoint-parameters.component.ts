@@ -14,6 +14,7 @@ export class EndpointParametersComponent implements OnInit {
     @Input()
     data?:OpenApiPathEndpointParameter[]|null = null;
     
+    parameterExamples :any = {}
     /**************************************************************************
     * CONSTRUCTOR
     **************************************************************************/
@@ -23,6 +24,18 @@ export class EndpointParametersComponent implements OnInit {
     ngOnInit(): void {
     }
 
+
+    /**************************************************************************
+    * ACTIONS
+    **************************************************************************/
+    toggleExample(index:number){
+        const value = this.parameterExamples[index];
+        if(value == undefined){
+            this.parameterExamples[index] = true;
+        }else{
+            this.parameterExamples[index] = !value;
+        }
+    }
     
     /**************************************************************************
     * GETTERS
@@ -42,4 +55,14 @@ export class EndpointParametersComponent implements OnInit {
         return result.join(SPACE);
     }
 
+    getParameterClass(index:number, styleclass:string):string{
+        const result: string[]= [styleclass];
+        const toggle = this.parameterExamples[index];
+        if(toggle){
+            result.push('display')
+        }
+        
+        return result.join(' ');
+
+    }
 }

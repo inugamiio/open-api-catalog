@@ -17,11 +17,17 @@
 package io.inugami.open.api.interfaces.api.ws;
 
 import io.inugami.open.api.interfaces.api.model.ApplicationDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tags({
+        @Tag(name = "application"),
+        @Tag(name = "api")
+})
 @RequestMapping(path = "ws/v1/application")
 public interface ApplicationRestClient {
 

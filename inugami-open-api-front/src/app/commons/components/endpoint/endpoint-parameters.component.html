@@ -19,7 +19,30 @@
                     <td>{{parameter.schema?.type}}</td>
                     <td>{{parameter.description}}</td>
                     <td>
-                        <inu-code [data]="parameter.example"></inu-code>
+                        <div *ngIf="parameter.example" class="parameters-main-example">
+                            <inu-code [data]="parameter.example"></inu-code>
+                        </div>
+
+                        <div *ngIf="parameter.examples" class="parameters-examples">
+                            <ng-container *ngFor="let example of parameter.examples; let paramIndex = index; let firstExample = first; let oddExample = odd;">
+                                <div [class]="getRowClass(paramIndex,firstExample, oddExample ,'parameter-example')">
+                                    <div  [class]="getParameterClass(paramIndex,'parameter-example-header')" (click)="toggleExample(paramIndex)">
+                                            {{example.name}}
+                                    </div>
+                                    <dl [class]="getParameterClass(paramIndex,'parameter-example-content')">
+                                        <dt>Summary</dt>
+                                        <dd>{{example.summary}}</dd>
+
+                                        <dt>External value</dt>
+                                        <dd>{{example.externalValue}}</dd>
+
+                                        <dt>Description</dt>
+                                        <dd>{{example.description}}</dd>
+
+                                    </dl>
+                                </div>
+                            </ng-container>
+                        </div>
                     </td>
                 </tr>
             </ng-container>
