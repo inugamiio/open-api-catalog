@@ -1,0 +1,18 @@
+<ng-container *ngIf="data">
+    <div class="inu-extension">
+        <ng-container *ngIf="keys">
+            <dl class="inu-extension-content">
+                <ng-container *ngFor="let key of keys; let index = index; let isFirst = first; let isOdd = odd;">
+                    <dt [class.first]="isFirst" [class.odd]="isOdd">{{key}}</dt>
+                    <dd [class.first]="isFirst" [class.odd]="isOdd">
+                        <inu-extension [data]="getChild(key)"></inu-extension>
+                    </dd>
+                </ng-container>
+            </dl>
+        </ng-container>
+
+        <ng-container *ngIf="_type == 'primitive'">
+            {{data}}
+        </ng-container>
+    </div>
+</ng-container>

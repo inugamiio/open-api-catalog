@@ -11,7 +11,7 @@ export class CodeComponent {
    * ATTRIBUTES
    **************************************************************************/
     @Input()
-    public data: string | null = null;
+    public data: string | null |undefined = null;
     @Input()
     public type: string  = 'json';
     @Input()

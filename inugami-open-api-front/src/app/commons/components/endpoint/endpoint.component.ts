@@ -1,6 +1,7 @@
 import { Component, Input, OnInit ,SecurityContext} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OpenApiComponentSchema, OpenApiPathEndpoint, OpenApiPathEndpointParameter } from '../../models/open-api.model';
+import { INU_ICON } from '../icon/icons';
 
 const SPACE : string = ' ';
 @Component({
@@ -22,6 +23,10 @@ export class EndpointComponent implements OnInit {
     headers?:OpenApiPathEndpointParameter[]|null = null;
     options?:OpenApiPathEndpointParameter[]|null = null;
     parameters?:OpenApiPathEndpointParameter[]|null = null;
+    icon : any = {
+        angleUp : INU_ICON.angleUp,
+        angleDown : INU_ICON.angleDown
+    };
     
     /**************************************************************************
     * CONSTRUCTOR

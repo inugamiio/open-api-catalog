@@ -4,7 +4,10 @@
             <span class="inu-endpoint-verb">{{endpoint.verb}}</span>
             <span class="inu-endpoint-url">{{endpoint.url}}</span>
         </h2>
-        <button class="open" (click)="toggleDisplay()" [class.displayStatus]="display"></button>
+        <span class="button open" (click)="toggleDisplay()" [class.displayStatus]="display">
+            <inu-icon [icon]="icon.angleUp" *ngIf="!display"></inu-icon>
+            <inu-icon [icon]="icon.angleDown" *ngIf="display"></inu-icon>
+        </span>
     </header>
 
     <div class="content-toggle" [class.display]="display">
@@ -77,7 +80,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th>Status</th>
+                            <th class="inu-endpoint-response-status">Status</th>
                             <th>Description</th>
                         </tr>
                     </tbody>
@@ -86,15 +89,8 @@
                             <tr [class]="getRowClass(index,isFirst, isOdd)">
                                 <td class="http-code">{{response.status}}</td>
                                 <td class="description-content">
-                                    <div class="description">{{response.description}}</div>
-                                    <div class="content-type">{{response.contentType}}</div>
-                                    <div class="schema" *ngIf="response.schema">
-                                        <ng-container *ngIf="response.schema.ref">
-                                            <inu-code [objectRef]="response.schema.ref"
-                                                      [objectRefType]="response.schema.type"
-                                                      [schemas]="schemas"></inu-code>
-                                        </ng-container>
-                                    </div>
+
+                                    <inu-endpoint-response [data]="response" [schemas]="schemas"></inu-endpoint-response>
                                 </td>
                             </tr>
                         </ng-container>

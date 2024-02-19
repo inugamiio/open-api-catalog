@@ -43,7 +43,7 @@ export interface Example{
     name:string;
     summary?:string; 
     description?:string;
-    value?:any;
+    value?:string;
     externalValue?:string;
     extension?:any;
 }
@@ -77,13 +77,35 @@ export interface OpenApiPathEndpointRequestBody{
     description?:string;
     content?:MediaTypeObject;
 }
+export interface Extension{
+    name:string;
+    value?:string;
+}
+
+export interface Header{
+    name:string;
+    description?:string;
+    externalDocs?:string;
+    style?:string;
+}
+
+export interface Example{
+    name:string;
+    summary?:string;
+     value?:string;
+    description?:string;
+    externalValue?:string;
+    extensions?: Extension[];
+}
 
 
 export interface OpenApiPathEndpointResponse{
     status?:string;
     description?:string;
     contentType?:string;
+    headers?: Header[];
     schema?:OpenApiSchema;
+    examples?: Example[]
 }
 
 /** https://swagger.io/specification/#paths-object */
