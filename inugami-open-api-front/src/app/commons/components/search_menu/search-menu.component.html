@@ -1,0 +1,38 @@
+<menu  #component [class]="displayStyleclass" >
+    
+    <div class="search-menu-content">
+        <div class="search-menu-action">
+            <button (click)="toggle()">
+                <ng-container *ngIf="display">
+                    <inu-icon [icon]="icons.close"></inu-icon>
+                </ng-container>
+                <ng-container *ngIf="!display">
+                    <inu-icon [icon]="icons.open"></inu-icon>
+                </ng-container>
+            </button>
+        </div>
+        <form>
+            <ng-container *ngIf="data">
+                <fieldset>
+                    <legend>Tags</legend>
+                </fieldset>
+            
+                <fieldset>
+                    <legend>Verbs</legend>
+                </fieldset>
+            </ng-container>
+        </form>
+    </div>
+    
+   
+    <div class="search-menu-action">
+        <button (click)="toggle()">
+            <ng-container *ngIf="display">
+                <inu-icon [icon]="icons.close"></inu-icon>
+            </ng-container>
+            <ng-container *ngIf="!display">
+                <inu-icon [icon]="icons.open"></inu-icon>
+            </ng-container>
+        </button>
+    </div>
+</menu>
