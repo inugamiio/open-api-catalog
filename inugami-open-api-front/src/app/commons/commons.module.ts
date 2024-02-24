@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HighlightModule } from 'ngx-highlightjs';
 import { AppRoutingModule } from '../app-routing.module';
@@ -33,7 +34,9 @@ import { SearchMenuComponent } from './components/search_menu/search-menu.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HighlightModule
+    HighlightModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
 })

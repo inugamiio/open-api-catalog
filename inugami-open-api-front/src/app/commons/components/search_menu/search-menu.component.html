@@ -11,7 +11,7 @@
                 </ng-container>
             </button>
         </div>
-        <form>
+        <form [formGroup]="search">
             <ng-container *ngIf="data">
                 <fieldset>
                     <legend>Tags</legend>
@@ -19,6 +19,12 @@
             
                 <fieldset>
                     <legend>Verbs</legend>
+                    <ng-container formArrayName="verbs">
+                        <div [formGroupName]="i" *ngFor="let item of verbsField?.controls; let i = index">
+                            <input type="checkbox" formControlName="checked" [id]="'verb-'+i">
+                            <label [for]="'verb-'+i">{{verbsDefault[i]}}</label>
+                        </div>
+                    </ng-container>
                 </fieldset>
             </ng-container>
         </form>

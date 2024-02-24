@@ -6,11 +6,13 @@
 
     <div class="content open-api-view">
         <aside>
-            <inu-search-menu [data]="apis"></inu-search-menu>
+            <inu-search-menu [data]="apis" (change)="searchChange($event)"></inu-search-menu>
         </aside>
         <div *ngIf="data.paths" class="endpoints">
             <div *ngFor="let endpoint of data.paths">
+                <ng-container *ngIf="canDisplay(endpoint)">
                 <inu-endpoint [endpoint]="endpoint" [schemas]="schemas"></inu-endpoint>
+                </ng-container>
             </div>
         </div>
         

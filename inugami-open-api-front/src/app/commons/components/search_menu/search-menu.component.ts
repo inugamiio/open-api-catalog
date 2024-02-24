@@ -1,9 +1,18 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, SecurityContext, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { OpenApi, OpenApiComponentSchema, OpenApiPathEndpoint, OpenApiPathEndpointParameter } from '../../models/open-api.model';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { OpenApi } from '../../models/open-api.model';
 import { INU_ICON } from '../icon/icons';
-import { Size } from '../svg/svg.models';
-import { SVG, SVG_ANIMATION } from '../svg/svg.utils';
+import { Size } from '../../svg/svg.models';
+import { SVG, SVG_ANIMATION } from '../../svg/svg.utils';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+export interface SearchMenuComponentEventVerb{
+    name:string;
+    checked:boolean;
+}
+export interface SearchMenuComponentEvent{
+    verbs:SearchMenuComponentEventVerb[]
+}
+
 
 const SPACE: string = ' ';
 @Component({
@@ -22,16 +31,22 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     @Input()
     public duration: number = 500;
 
+    @Output()
+    public change: EventEmitter<SearchMenuComponentEvent> = new EventEmitter();
+
+    search!:FormGroup;
     displayStyleclass: string = 'search-menu display';
     size: Size | undefined = undefined;
     displaySize = 20;
     closeSize = 3;
-
     display: boolean = true;
     icons: any = {
         close: INU_ICON.angleLeft,
         open: INU_ICON.angleRight
     }
+
+    verbsDefault :string[]= ['GET','OPTIONS','PATCH', 'POST','PUT','TRACE', 'DELETE'];
+    
 
     @ViewChild('component')
     private component: ElementRef | undefined | null = null;
@@ -39,24 +54,51 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     /**************************************************************************
     * CONSTRUCTOR
     **************************************************************************/
+   constructor(private formBuilder: FormBuilder){
+   }
+
     ngAfterViewInit(): void {
         if (this.component && this.component.nativeElement) {
             this.size = SVG.MATH.size(this.component.nativeElement);
         }
     }
     ngOnInit(): void {
-       
-        if (this.data) {
-
-        }
-
+        this.initForm();
     }
+
+
+    private initForm(){
+        this.search = this.formBuilder.group({
+            verbs: new FormArray([])
+        });
+        
+        this.search.valueChanges
+        .subscribe({
+            next: event=> this.change.emit(event as SearchMenuComponentEvent)
+        });
+
+
+        const verbField =this.verbsField;
+        if(verbField){
+            for(let verb of this.verbsDefault){
+                verbField.push(new FormGroup({
+                    name: new FormControl(verb),
+                    checked: new FormControl(true)
+                  }));
+            }
+        }
+        
+    }
+
+
+    /**************************************************************************
+    * EVENT
+    **************************************************************************/
 
     /**************************************************************************
     * ACTIONS
     **************************************************************************/
     toggle() {
-        console.log('toggle', this.size);
         if (this.size) {
             const delta = this.displaySize - this.closeSize;
             SVG.ANIMATION.animate((t) => this.progress(t, delta),
@@ -71,13 +113,13 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
         }
 
         const currentSize = this.display ? this.displaySize - (t * delta)
-                                         : this.closeSize + (t * delta);
+            : this.closeSize + (t * delta);
 
         this.component.nativeElement.setAttribute('style', `width: ${currentSize}rem`);
         if (this.display) {
-            this.component.nativeElement.setAttribute('class',`search-menu display inprogress closing`);
+            this.component.nativeElement.setAttribute('class', `search-menu display inprogress closing`);
         } else {
-            this.component.nativeElement.setAttribute('class',`search-menu hide inprogress opening`);
+            this.component.nativeElement.setAttribute('class', `search-menu hide inprogress opening`);
         }
 
         if (t == 1) {
@@ -94,5 +136,8 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     /**************************************************************************
     * GETTER
     **************************************************************************/
-
+    get verbsField():FormArray<any>|undefined|null{
+        return this.search ? this.search.get('verbs') as FormArray<any>: undefined;
+    }
+  
 }
