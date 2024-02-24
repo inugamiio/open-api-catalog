@@ -14,11 +14,20 @@
         <form [formGroup]="search">
             <ng-container *ngIf="data">
                 <fieldset>
+                    <legend>Uri</legend>
+                    <input type="text"  formControlName="uri" placeholder="Endpoint uri"/>
+                </fieldset>
+
+                <fieldset>
                     <legend>Tags</legend>
                 </fieldset>
             
                 <fieldset>
                     <legend>Verbs</legend>
+                    <div class="search-menu-verbs-actions">
+                        <button (click)="selectAllVerbs()">All</button>
+                        <button (click)="selectAnyVerbs()">None</button>
+                    </div>
                     <ng-container formArrayName="verbs">
                         <div [formGroupName]="i" *ngFor="let item of verbsField?.controls; let i = index">
                             <input type="checkbox" formControlName="checked" [id]="'verb-'+i">

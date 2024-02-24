@@ -5,12 +5,12 @@ import { Size } from '../../svg/svg.models';
 import { SVG, SVG_ANIMATION } from '../../svg/svg.utils';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-export interface SearchMenuComponentEventVerb{
-    name:string;
-    checked:boolean;
+export interface SearchMenuComponentEventVerb {
+    name: string;
+    checked: boolean;
 }
-export interface SearchMenuComponentEvent{
-    verbs:SearchMenuComponentEventVerb[]
+export interface SearchMenuComponentEvent {
+    verbs: SearchMenuComponentEventVerb[]
 }
 
 
@@ -34,7 +34,7 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     @Output()
     public change: EventEmitter<SearchMenuComponentEvent> = new EventEmitter();
 
-    search!:FormGroup;
+    search!: FormGroup;
     displayStyleclass: string = 'search-menu display';
     size: Size | undefined = undefined;
     displaySize = 20;
@@ -45,8 +45,8 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
         open: INU_ICON.angleRight
     }
 
-    verbsDefault :string[]= ['GET','OPTIONS','PATCH', 'POST','PUT','TRACE', 'DELETE'];
-    
+    verbsDefault: string[] = ['GET', 'OPTIONS', 'PATCH', 'POST', 'PUT', 'TRACE', 'DELETE'];
+
 
     @ViewChild('component')
     private component: ElementRef | undefined | null = null;
@@ -54,8 +54,8 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     /**************************************************************************
     * CONSTRUCTOR
     **************************************************************************/
-   constructor(private formBuilder: FormBuilder){
-   }
+    constructor(private formBuilder: FormBuilder) {
+    }
 
     ngAfterViewInit(): void {
         if (this.component && this.component.nativeElement) {
@@ -67,27 +67,28 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     }
 
 
-    private initForm(){
+    private initForm() {
         this.search = this.formBuilder.group({
+            uri: [],
             verbs: new FormArray([])
         });
-        
+
         this.search.valueChanges
-        .subscribe({
-            next: event=> this.change.emit(event as SearchMenuComponentEvent)
-        });
+            .subscribe({
+                next: event => this.change.emit(event as SearchMenuComponentEvent)
+            });
 
 
-        const verbField =this.verbsField;
-        if(verbField){
-            for(let verb of this.verbsDefault){
+        const verbField = this.verbsField;
+        if (verbField) {
+            for (let verb of this.verbsDefault) {
                 verbField.push(new FormGroup({
                     name: new FormControl(verb),
                     checked: new FormControl(true)
-                  }));
+                }));
             }
         }
-        
+
     }
 
 
@@ -131,13 +132,39 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
             }
         }
     }
+    selectAllVerbs() {
+        const verbs = this.verbsField;
+        if (verbs) {
+            for (let verb of verbs.controls) {
+                verb.setValue(
+                    {
+                        name: verb.value.name,
+                        checked:true
+                    }
+                );
+            }
+        }
+    }
 
+    selectAnyVerbs() {
+        const verbs = this.verbsField;
+        if (verbs) {
+            for (let verb of verbs.controls) {
+                verb.setValue(
+                    {
+                        name: verb.value.name,
+                        checked:false
+                    }
+                );
+            }
+        }
+    }
 
     /**************************************************************************
     * GETTER
     **************************************************************************/
-    get verbsField():FormArray<any>|undefined|null{
-        return this.search ? this.search.get('verbs') as FormArray<any>: undefined;
+    get verbsField(): FormArray<any> | undefined | null {
+        return this.search ? this.search.get('verbs') as FormArray<any> : undefined;
     }
-  
+
 }

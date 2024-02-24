@@ -14,7 +14,7 @@
     form{
         margin-top: 1rem;
         width: 20rem;
-        
+
         fieldset{
             border: 0;
             margin-bottom: 1rem;
@@ -25,7 +25,10 @@
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
             }
+
         }
+
+  
         
     }
 
@@ -59,5 +62,13 @@
     
     &.display{
         width: 20rem;
+    }
+
+    .search-menu-verbs-actions{
+        display: flex;
+        justify-content: space-between;
+        button{
+            width: 8rem;
+        }
     }
 }
