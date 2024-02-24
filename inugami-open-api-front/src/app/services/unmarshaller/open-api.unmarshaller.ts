@@ -6,7 +6,6 @@ import {
     OpenApiComponent,
     OpenApiComponentSchema,
     OpenApiComponentSecurityScheme,
-    OpenApiExternalDocs,
     OpenApiInfo,
     OpenApiPathEndpoint,
     OpenApiPathEndpointParameter,
@@ -16,7 +15,9 @@ import {
     OpenApiSchema,
     OpenApiServer,
     Header,
-    Extension
+    Extension,
+    Tags,
+    ExternalDocs
 } from 'src/app/commons/models/open-api.model';
 
 const VERBS: string[] = ['get', 'put', 'post', 'delete', 'options', 'patch', 'trace'];
@@ -37,6 +38,7 @@ export class OpenApiUnmarshaller {
             info: this.unmarshallInfo(response.info),
             paths: this.unmarshallPaths(response.paths),
             servers: this.unmarshallServers(response.servers),
+            tags: this.unmarshallTags(response.tags)
         };
         return result;
     }
@@ -133,9 +135,11 @@ export class OpenApiUnmarshaller {
         return result;
     }
 
-    private unmarshallExternalDocs(externalDocs: any): OpenApiExternalDocs | undefined {
+    private unmarshallExternalDocs(externalDocs: any): ExternalDocs | undefined {
         return !externalDocs ? undefined : {
-            url: externalDocs.url
+            url: externalDocs.url,
+            description:externalDocs.description,
+            extension: this.unmarshallExtension(externalDocs)
         };
     }
     private unmarshallInfo(info: any): OpenApiInfo | undefined {
@@ -419,5 +423,48 @@ export class OpenApiUnmarshaller {
         }
 
         return result.length == 0 ? undefined : result;
+    }
+
+
+    private unmarshallTags(value:any):Tags[]{
+        const result:Tags[] = [];
+        if(value==undefined || !Array.isArray(value)){
+            return result;
+        }
+
+        for(let tag of value){
+            if(tag.name){
+                const currentTag :Tags= {name:tag.name}
+                if(tag.description){
+                    currentTag.description = tag.description;
+                }
+                const externalDoc = this.unmarshallExternalDocs(tag.externalDocs);
+                if(externalDoc){
+                    currentTag.externalDocs=externalDoc;
+                }
+
+                result.push(currentTag);
+            }
+            
+        }
+
+        return result;
+    }
+    private unmarshallExtension(value:any):any|undefined{
+        if(!value){
+            return undefined;
+        }
+
+        const result: any = {};
+        const keys =Object.keys(value);
+        keys.sort();
+
+        for(let key of keys){
+            if(key.startsWith("x-")){
+                result[key.substring(2)]=value[key];
+            }
+        }
+
+        return result;
     }
 }

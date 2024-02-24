@@ -1,10 +1,7 @@
 
-export interface OpenApiProperty{
-    type:string;
-    name?:string;
-    additionalProperties?:OpenApiProperty;
-    items?:OpenApiSchema
-}
+// ====================================================================================================================
+// C
+// ====================================================================================================================
 export interface OpenApiComponentSchema{
     id:string;
     name:string;
@@ -13,20 +10,42 @@ export interface OpenApiComponentSchema{
 
 }
 
-export interface OpenApiComponentSecurityScheme{
-    name?:string;
-    type?:string;
-    scheme?:string;
-}
 
 export interface OpenApiComponent{
     schemas?:OpenApiComponentSchema[];
     securitySchemes?:OpenApiComponentSecurityScheme[];
 }
 
-export interface OpenApiExternalDocs{
-    url?:string;
+
+
+// ====================================================================================================================
+// E
+// ====================================================================================================================
+
+export interface Example{
+    name:string;
+    summary?:string;
+    value?:string;
+    description?:string;
+    externalValue?:string;
+    extensions?: Extension[];
 }
+
+
+export interface Extension{
+    name:string;
+    value?:string;
+}
+
+export interface ExternalDocs{
+    description?:string;
+    url?:String;
+    extension?:any;
+}
+
+// ====================================================================================================================
+// I
+// ====================================================================================================================
 
 export interface OpenApiInfo{
     title?:string;
@@ -34,34 +53,21 @@ export interface OpenApiInfo{
     version?:string;
 }
 
-export interface OpenApiSchema{
-    type?:string;
-    ref?:string;
-}
 
-export interface Example{
+// ====================================================================================================================
+// H
+// ====================================================================================================================
+export interface Header{
     name:string;
-    summary?:string; 
     description?:string;
-    value?:string;
-    externalValue?:string;
-    extension?:any;
-}
-export interface OpenApiPathEndpointParameter{
-    name?:string;
-    in?:string;
-    required?:boolean;
-    description?:string;
-    deprecated?:boolean;
-    allowEmptyValue?:boolean;
-    schema?:OpenApiSchema;
+    externalDocs?:string;
     style?:string;
-    explode?:boolean;
-    allowReserved?:boolean;
-    example?:any;
-    examples?:Example[]; //TODO : check real representation 
-
 }
+
+
+// ====================================================================================================================
+// M
+// ====================================================================================================================
 
 export interface MediaTypeObject{
     schema?:OpenApiSchema;
@@ -70,44 +76,9 @@ export interface MediaTypeObject{
     encoding?:any;
 }
 
-export interface OpenApiPathEndpointRequestBody{
-    contentType?:string;
-    required?:boolean;
-    schema?:OpenApiSchema;
-    description?:string;
-    content?:MediaTypeObject;
-}
-export interface Extension{
-    name:string;
-    value?:string;
-}
-
-export interface Header{
-    name:string;
-    description?:string;
-    externalDocs?:string;
-    style?:string;
-}
-
-export interface Example{
-    name:string;
-    summary?:string;
-     value?:string;
-    description?:string;
-    externalValue?:string;
-    extensions?: Extension[];
-}
-
-
-export interface OpenApiPathEndpointResponse{
-    status?:string;
-    description?:string;
-    contentType?:string;
-    headers?: Header[];
-    schema?:OpenApiSchema;
-    examples?: Example[]
-}
-
+// ====================================================================================================================
+// P
+// ====================================================================================================================
 /** https://swagger.io/specification/#paths-object */
 export interface OpenApiPathEndpoint{
     url:string;
@@ -125,17 +96,91 @@ export interface OpenApiPathEndpoint{
 
 }
 
+
+export interface OpenApiPathEndpointParameter{
+    name?:string;
+    in?:string;
+    required?:boolean;
+    description?:string;
+    deprecated?:boolean;
+    allowEmptyValue?:boolean;
+    schema?:OpenApiSchema;
+    style?:string;
+    explode?:boolean;
+    allowReserved?:boolean;
+    example?:any;
+    examples?:Example[]; //TODO : check real representation 
+
+}
+export interface OpenApiPathEndpointResponse{
+    status?:string;
+    description?:string;
+    contentType?:string;
+    headers?: Header[];
+    schema?:OpenApiSchema;
+    examples?: Example[]
+}
+
+export interface OpenApiProperty{
+    type:string;
+    name?:string;
+    additionalProperties?:OpenApiProperty;
+    items?:OpenApiSchema
+}
+
+// ====================================================================================================================
+// S
+// ====================================================================================================================
+
+
+
+export interface OpenApiSchema{
+    type?:string;
+    ref?:string;
+}
+
 export interface OpenApiServer{
     url?:string;
     description?:string;
 }
 
+
+export interface OpenApiComponentSecurityScheme{
+    name?:string;
+    type?:string;
+    scheme?:string;
+}
+
+// ====================================================================================================================
+// T
+// ====================================================================================================================
+export interface Tags{
+    name:string;
+    description?:string;
+    externalDocs?:ExternalDocs;
+}
+
+// ====================================================================================================================
+// R
+// ====================================================================================================================
+export interface OpenApiPathEndpointRequestBody{
+    contentType?:string;
+    required?:boolean;
+    schema?:OpenApiSchema;
+    description?:string;
+    content?:MediaTypeObject;
+}
+
+// ====================================================================================================================
+// OpenApi
+// ====================================================================================================================
 export interface OpenApi{
     openapi?:string;
     components?:OpenApiComponent;
-    externalDocs?: OpenApiExternalDocs;
+    externalDocs?: ExternalDocs;
     info?:OpenApiInfo;
     paths?: OpenApiPathEndpoint[];
     servers?:OpenApiServer[];
-
+    tags?:Tags[]
+    
 }

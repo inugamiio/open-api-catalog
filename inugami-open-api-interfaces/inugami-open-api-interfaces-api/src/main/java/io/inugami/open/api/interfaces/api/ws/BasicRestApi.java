@@ -55,8 +55,8 @@ import java.util.List;
                         }
                 )
         ),
-        @Tag(name = "example"),
-        @Tag(name = "user")
+        @Tag(name = "example", description = "Open API example"),
+        @Tag(name = "user", description = "Allows to manage users")
 })
 @RequestMapping(path = "example/v1")
 public interface BasicRestApi {

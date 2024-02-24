@@ -1,16 +1,14 @@
 <section *ngIf="data">
 
     <header *ngIf="data.info">
-        <h1 *ngIf="data.info.title">{{data.info.title}}</h1>
-        <h2 *ngIf="data.info.version">{{data.info.version}}</h2>
-        <p *ngIf="data.info.description">
-            {{data.info.description}}
-        </p>
+        <h1>Open API Catalog</h1>
     </header>
 
-    <div class="content">
-
-        <div *ngIf="data.paths">
+    <div class="content open-api-view">
+        <aside>
+            <inu-search-menu [data]="apis"></inu-search-menu>
+        </aside>
+        <div *ngIf="data.paths" class="endpoints">
             <div *ngFor="let endpoint of data.paths">
                 <inu-endpoint [endpoint]="endpoint" [schemas]="schemas"></inu-endpoint>
             </div>

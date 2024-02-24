@@ -29,7 +29,6 @@ export class IconComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-        console.log(this.icon)
         if (this.icon) {
             this.iconContent = this.sanitizer.bypassSecurityTrustHtml(this.icon);
         }

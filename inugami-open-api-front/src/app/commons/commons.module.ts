@@ -8,6 +8,7 @@ import { EndpointResponseComponent } from './components/endpoint/endpoint-respon
 import { EndpointComponent } from './components/endpoint/endpoint.component';
 import { ExtensionComponent } from './components/extension/extension.component';
 import { IconComponent } from './components/icon/icon.component';
+import { SearchMenuComponent } from './components/search_menu/search-menu.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { IconComponent } from './components/icon/icon.component';
     EndpointParametersComponent,
     EndpointResponseComponent,
     IconComponent,
-    ExtensionComponent
+    ExtensionComponent,
+    SearchMenuComponent
   ],
   exports:[
     CodeComponent,
@@ -25,7 +27,8 @@ import { IconComponent } from './components/icon/icon.component';
     EndpointParametersComponent,
     EndpointResponseComponent,
     IconComponent,
-    ExtensionComponent
+    ExtensionComponent,
+    SearchMenuComponent
   ],
   imports: [
     BrowserModule,

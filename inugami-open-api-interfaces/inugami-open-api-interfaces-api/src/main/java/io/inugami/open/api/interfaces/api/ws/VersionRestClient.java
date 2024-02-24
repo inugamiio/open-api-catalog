@@ -17,12 +17,17 @@
 package io.inugami.open.api.interfaces.api.ws;
 
 import io.inugami.open.api.interfaces.api.model.VersionDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+@Tags({
+        @Tag(name = "open-api catalog"),
+        @Tag(name = "version")
+})
 @RequestMapping(path = "ws/v1/version")
 public interface VersionRestClient {
 

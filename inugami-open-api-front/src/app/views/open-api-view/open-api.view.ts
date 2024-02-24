@@ -14,7 +14,7 @@ export class OpenApiView implements OnInit {
     // ATTRIBUTES
     // =================================================================================================================
     data : OpenApi|null= null;
-
+    apis : OpenApi[]|null= null;
 
     // =================================================================================================================
     // INIT
@@ -28,6 +28,9 @@ export class OpenApiView implements OnInit {
        this.versionRestService.getOpenApi('lastest').subscribe({
         next: res=> {
             this.data = res;
+            this.apis= [res];
+            console.log(res);
+
         }
        });
     }
