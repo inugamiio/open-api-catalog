@@ -160,7 +160,8 @@ export interface Tags{
     externalDocs?:ExternalDocs;
 }
 export interface TagsWrapper{
-    tag:Tags;
+    tag?:Tags;
+    tags?:Tags[];
     endpoint?:OpenApiPathEndpoint[];
 }
 

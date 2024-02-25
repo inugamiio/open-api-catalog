@@ -9,6 +9,7 @@ export interface SelectGroupModel<T>{
 
 
 export interface TreeNode<T>{
+    path?:string;
     type?:string;    
     label?:string;
     details?:string;
