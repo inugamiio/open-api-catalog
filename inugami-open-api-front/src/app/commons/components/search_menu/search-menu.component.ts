@@ -10,7 +10,8 @@ export interface SearchMenuComponentEventVerb {
     checked: boolean;
 }
 export interface SearchMenuComponentEvent {
-    verbs: SearchMenuComponentEventVerb[]
+    verbs: SearchMenuComponentEventVerb[],
+    uri?:string
 }
 
 
@@ -46,6 +47,7 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     }
 
     verbsDefault: string[] = ['GET', 'OPTIONS', 'PATCH', 'POST', 'PUT', 'TRACE', 'DELETE'];
+    previousUri: string | null = null;
 
 
     @ViewChild('component')
@@ -75,7 +77,7 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
 
         this.search.valueChanges
             .subscribe({
-                next: event => this.change.emit(event as SearchMenuComponentEvent)
+                next: event => this.sendEvent()
             });
 
 
@@ -95,7 +97,21 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     /**************************************************************************
     * EVENT
     **************************************************************************/
+    sendEvent() {
+        this.change.emit(this.search.value);
+    }
 
+    onUriChange(event: any) {
+        setTimeout(() => {
+            const currentUri = this.uri;
+            if (this.previousUri == null || this.previousUri != currentUri) {
+                this.previousUri = currentUri;
+                this.sendEvent();
+            }
+        });
+
+
+    }
     /**************************************************************************
     * ACTIONS
     **************************************************************************/
@@ -139,7 +155,7 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
                 verb.setValue(
                     {
                         name: verb.value.name,
-                        checked:true
+                        checked: true
                     }
                 );
             }
@@ -153,7 +169,7 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
                 verb.setValue(
                     {
                         name: verb.value.name,
-                        checked:false
+                        checked: false
                     }
                 );
             }
@@ -167,4 +183,11 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
         return this.search ? this.search.get('verbs') as FormArray<any> : undefined;
     }
 
+    get uri(): string | null {
+        const control = this.search.get('uri');
+        if (control) {
+            return control.value;
+        }
+        return null;
+    }
 }

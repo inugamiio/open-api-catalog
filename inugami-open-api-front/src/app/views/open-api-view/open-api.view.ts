@@ -72,6 +72,12 @@ export class OpenApiView implements OnInit {
         result = searchVerb[0].checked;
       }
 
+      if(result && this.searchData.uri){
+        const searchUri = this.searchData.uri.toUpperCase();
+        const currentUri = path.url.toUpperCase();
+        result = currentUri.indexOf(searchUri) != -1;
+      }
+
       return result;
     }
 

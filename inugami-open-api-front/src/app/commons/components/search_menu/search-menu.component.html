@@ -13,16 +13,16 @@
         </div>
         <form [formGroup]="search">
             <ng-container *ngIf="data">
-                <fieldset>
+                <fieldset class="search-menu-uri">
                     <legend>Uri</legend>
-                    <input type="text"  formControlName="uri" placeholder="Endpoint uri"/>
+                    <input type="text"  formControlName="uri" placeholder="Endpoint uri" (keydown)="onUriChange($event)"/>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="search-menu-tag">
                     <legend>Tags</legend>
                 </fieldset>
             
-                <fieldset>
+                <fieldset  class="search-menu-verbs">
                     <legend>Verbs</legend>
                     <div class="search-menu-verbs-actions">
                         <button (click)="selectAllVerbs()">All</button>

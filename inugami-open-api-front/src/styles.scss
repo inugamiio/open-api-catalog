@@ -520,3 +520,21 @@ code{
     border-radius: 0.2rem;
     min-height: 100vh;
 }
+
+
+
+input[type="text"]{
+    border: 0;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid gray;
+    padding: 0.2rem;
+    outline: none;
+
+    &:hover{
+        border-bottom: 1px solid var(--info); 
+    }
+    &:focus{
+        border-bottom: 1px solid var(--info-dark); 
+    }
+}
