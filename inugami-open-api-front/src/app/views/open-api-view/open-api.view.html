@@ -1,9 +1,4 @@
 <section *ngIf="data">
-
-    <header *ngIf="data.info">
-        <h1>Open API Catalog</h1>
-    </header>
-
     <div class="content open-api-view">
         <aside>
             <inu-search-menu [data]="apis" (change)="searchChange($event)"></inu-search-menu>

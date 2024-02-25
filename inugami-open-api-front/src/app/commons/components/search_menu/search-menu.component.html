@@ -2,7 +2,7 @@
     
     <div class="search-menu-content">
         <div class="search-menu-action">
-            <button (click)="toggle()">
+            <button (click)="toggle()"  class="neutral">
                 <ng-container *ngIf="display">
                     <inu-icon [icon]="icons.close"></inu-icon>
                 </ng-container>
@@ -20,13 +20,14 @@
 
                 <fieldset class="search-menu-tag">
                     <legend>Tags</legend>
+                    <inu-search-tags  formControlName="tags"></inu-search-tags>
                 </fieldset>
             
                 <fieldset  class="search-menu-verbs">
                     <legend>Verbs</legend>
                     <div class="search-menu-verbs-actions">
-                        <button (click)="selectAllVerbs()">All</button>
-                        <button (click)="selectAnyVerbs()">None</button>
+                        <button (click)="selectAllVerbs()" class="primary">All</button>
+                        <button (click)="selectAnyVerbs()" class="neutral">None</button>
                     </div>
                     <ng-container formArrayName="verbs">
                         <div [formGroupName]="i" *ngFor="let item of verbsField?.controls; let i = index">
@@ -41,7 +42,7 @@
     
    
     <div class="search-menu-action">
-        <button (click)="toggle()">
+        <button (click)="toggle()" class="neutral">
             <ng-container *ngIf="display">
                 <inu-icon [icon]="icons.close"></inu-icon>
             </ng-container>

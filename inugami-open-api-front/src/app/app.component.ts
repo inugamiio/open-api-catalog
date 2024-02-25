@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { INU_ICON } from './commons/components/icon/icons';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'inugami-open-api-catalog';
+
+     icon : any = {
+        inugami : INU_ICON.inugami
+    };
 
 }

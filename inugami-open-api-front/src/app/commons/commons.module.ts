@@ -9,6 +9,7 @@ import { EndpointResponseComponent } from './components/endpoint/endpoint-respon
 import { EndpointComponent } from './components/endpoint/endpoint.component';
 import { ExtensionComponent } from './components/extension/extension.component';
 import { IconComponent } from './components/icon/icon.component';
+import { SearchTagsComponent } from './components/search-tags/search-tags.component';
 import { SearchMenuComponent } from './components/search_menu/search-menu.component';
 
 
@@ -20,7 +21,8 @@ import { SearchMenuComponent } from './components/search_menu/search-menu.compon
     EndpointResponseComponent,
     IconComponent,
     ExtensionComponent,
-    SearchMenuComponent
+    SearchMenuComponent,
+    SearchTagsComponent
   ],
   exports:[
     CodeComponent,
@@ -29,7 +31,8 @@ import { SearchMenuComponent } from './components/search_menu/search-menu.compon
     EndpointResponseComponent,
     IconComponent,
     ExtensionComponent,
-    SearchMenuComponent
+    SearchMenuComponent,
+    SearchTagsComponent
   ],
   imports: [
     BrowserModule,

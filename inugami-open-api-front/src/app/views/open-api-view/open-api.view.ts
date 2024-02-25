@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { VersionRestService } from 'src/app/services/connector/version.rest-service';
-import { OpenApi, OpenApiComponentSchema, OpenApiPathEndpoint } from 'src/app/commons/models/open-api.model';
+import { OpenApi, OpenApiComponentSchema, OpenApiPathEndpoint, Tags, TagsWrapper } from 'src/app/commons/models/open-api.model';
 import { SearchMenuComponentEvent } from 'src/app/commons/components/search_menu/search-menu.component';
+import { OpenApiService } from 'src/app/services/open-api.service';
+import { TreeNode } from 'src/app/commons/models/select-item.model';
 
 @Component({
   templateUrl: './open-api.view.html',
@@ -17,11 +19,12 @@ export class OpenApiView implements OnInit {
     data : OpenApi|null= null;
     apis : OpenApi[]|null= null;
     searchData : SearchMenuComponentEvent|null = null;
-
+    tags :TreeNode<TagsWrapper>|null=null;
     // =================================================================================================================
     // INIT
     // =================================================================================================================
-    constructor(private versionRestService:VersionRestService){
+    constructor(private openApiService:OpenApiService,
+                private versionRestService:VersionRestService){
 
     }
     ngOnInit(): void {
@@ -32,10 +35,11 @@ export class OpenApiView implements OnInit {
             this.data = res;
             this.apis= [res];
             console.log(res);
-
+            this.tags= this.openApiService.resolveTags(this.apis);
         }
        });
     }
+
 
 
     // =================================================================================================================

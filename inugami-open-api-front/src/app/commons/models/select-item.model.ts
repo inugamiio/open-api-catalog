@@ -8,6 +8,16 @@ export interface SelectGroupModel<T>{
 }
 
 
+export interface TreeNode<T>{
+    type?:string;    
+    label?:string;
+    details?:string;
+    icon?:string;
+    value?:T;
+    selected?:boolean;
+    children?:TreeNode<T>[];
+}
+
 export interface SelectItemModel<T>{
     type?:string;    
     label?:string;

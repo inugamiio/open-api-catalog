@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { OpenApi } from '../../models/open-api.model';
+import { OpenApi, Tags } from '../../models/open-api.model';
 import { INU_ICON } from '../icon/icons';
 import { Size } from '../../svg/svg.models';
 import { SVG, SVG_ANIMATION } from '../../svg/svg.utils';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { TreeNode } from '../../models/select-item.model';
 
 export interface SearchMenuComponentEventVerb {
     name: string;
@@ -28,6 +29,8 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     **************************************************************************/
     @Input()
     public data: OpenApi[] | undefined | null = null;
+    @Input()
+    public tags: TreeNode<Tags>[] | undefined | null = null;
 
     @Input()
     public duration: number = 500;
@@ -72,7 +75,8 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
     private initForm() {
         this.search = this.formBuilder.group({
             uri: [],
-            verbs: new FormArray([])
+            verbs: new FormArray([]),
+            tags: [this.tags]
         });
 
         this.search.valueChanges

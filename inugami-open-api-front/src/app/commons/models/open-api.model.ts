@@ -159,6 +159,10 @@ export interface Tags{
     description?:string;
     externalDocs?:ExternalDocs;
 }
+export interface TagsWrapper{
+    tag:Tags;
+    endpoint?:OpenApiPathEndpoint[];
+}
 
 // ====================================================================================================================
 // R

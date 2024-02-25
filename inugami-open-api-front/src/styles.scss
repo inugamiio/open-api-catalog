@@ -59,6 +59,58 @@
     --neutral:#999999;
     --neutral-dark:#666666;
     --neutral-light:#cccccc;
+
+
+    --base-dark-light: #534e48;
+    --base-dark: #363432;
+    --base-darker: #1d1c1c;
+    --base-emphase-lighter: #2b8191;
+    --base-emphase: #196774;
+    --base-emphase-darker: #16464e;
+    --base-neutral-lighter: #a3a4a5;
+    --base-neutral: #c5d0d4;
+    --base-neutral-font: #262424;
+    --base-neutral-darker: #727977;
+    --base-focus-lighter: #f1bd4d;
+    --base-focus: #dba123;
+    --base-focus-darker: #b68f23;
+    --base-focus-emphase-lighter: #e07243;
+    --base-focus-emphase: #EF6024;
+    --base-focus-emphase-darker: #ad3c0b;
+}
+
+body {
+    margin: 0;
+}
+.main-header{
+    display: flex;
+    margin-bottom: 1rem;
+    background-color: var(--base-dark);
+    padding-left: 1rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.45em;
+    font-weight: bold;
+    color: var(--neutral-light);
+    box-shadow: 0 0 1rem 0rem #a5a5a5;
+
+    .main-header-label{
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+    }
+    .inu-icon{
+        height: 3rem;
+        width: 4rem;
+        fill: var(--neutral-light);
+        display: block;
+        .inugami-red{
+            fill: #bb3434;
+        }
+        .inugami-gray{
+            fill:var(--neutral-light);
+        }
+    }
 }
 
 /**********************************************************************************************************************
@@ -515,26 +567,48 @@ code{
 
 
 .search-menu{
-    background-color: #f1f1f1;
+    background-color: var(--base-neutral);
+    color:var(--base-neutral-font);
     padding: 0.5rem ;
     border-radius: 0.2rem;
     min-height: 100vh;
 }
 
+button{
+    border-radius: 0.3rem;
+    border: none;
+    padding: 0.3rem;
+    font-weight: bold;
+    color: var(--neutral-light);
+    fill: var(--neutral-light);
+    transition: color 0.3s, fill 0.3s, background-color 0.7s;
 
+    &.neutral{
+        background-color:var(--base-dark);
+    }
+    &.primary{
+        background-color:var(--base-emphase-darker);
+    }
+
+    &:hover{
+        background-color:var(--base-focus-lighter);
+        color: var(--base-neutral-font);
+        fill: var(--base-neutral-font);
+    }
+}
 
 input[type="text"]{
     border: 0;
     width: 100%;
     background: transparent;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid gray;
     padding: 0.2rem;
     outline: none;
-
+    transition: border-color 0.5s;
     &:hover{
-        border-bottom: 1px solid var(--info); 
+        border-bottom: 2px solid var(--base-focus-lighter); 
     }
     &:focus{
-        border-bottom: 1px solid var(--info-dark); 
+        border-bottom: 2px solid var(--base-focus); 
     }
 }
