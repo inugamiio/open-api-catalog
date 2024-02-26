@@ -61,22 +61,32 @@
     --neutral-light:#cccccc;
 
 
-    --base-dark-light: #534e48;
-    --base-dark: #363432;
-    --base-darker: #1d1c1c;
-    --base-emphase-lighter: #2b8191;
-    --base-emphase: #196774;
-    --base-emphase-darker: #16464e;
-    --base-neutral-lighter: #a3a4a5;
-    --base-neutral: #c5d0d4;
+    --base-dark-light: #454350;
+    --base-dark: #1F1E26;
+    --base-darker: #14131a;
+
+    --base-emphase-lighter: #6f849e;
+    --base-emphase: #5A708C;
+    --base-emphase-darker: #3f5470;
+
+    --base-secondary-lighter: #C880AF;
+    --base-secondary: #8C5A7B;
+    --base-secondary-darker: #623F55;
+
+
+    --base-neutral-lighter: #f5ebe3;
+    --base-neutral: #F2EAE4;
+    --base-neutral-lighter-font: #554a4a;
     --base-neutral-font: #262424;
-    --base-neutral-darker: #727977;
-    --base-focus-lighter: #f1bd4d;
-    --base-focus: #dba123;
-    --base-focus-darker: #b68f23;
-    --base-focus-emphase-lighter: #e07243;
-    --base-focus-emphase: #EF6024;
-    --base-focus-emphase-darker: #ad3c0b;
+    --base-neutral-darker: #dacdc3;
+
+    --base-focus-lighter: #dbc888;
+    --base-focus: #D4C48C;
+    --base-focus-darker: #B3A476;
+    
+    --base-focus-emphase-lighter: #F6C199;
+    --base-focus-emphase: #FFC89E;
+    --base-focus-emphase-darker: #B38C6F;
 }
 
 body {
@@ -98,6 +108,7 @@ body {
         display: flex;
         align-items: center;
         font-size: 150%;
+        user-select: none;
     }
     .inu-icon{
         height: 3rem;
@@ -105,7 +116,7 @@ body {
         fill: var(--neutral-light);
         display: block;
         .inugami-red{
-            fill: #727272;
+            fill: var(--base-secondary);
         }
         .inugami-gray{
             fill:var(--neutral-light);
@@ -576,25 +587,55 @@ code{
 
 button{
     border-radius: 0.3rem;
-    border: none;
+    border: 2px solid;
     padding: 0.3rem;
     font-weight: bold;
     color: var(--neutral-light);
     fill: var(--neutral-light);
-    transition: color 0.3s, fill 0.3s, background-color 0.7s;
+    transition: color 0.3s, fill 0.3s, background-color 0.7s,border-color 0.3s;
 
-    &.neutral{
-        background-color:var(--base-dark);
-    }
-    &.primary{
-        background-color:var(--base-emphase-darker);
-    }
 
     &:hover{
         background-color:var(--base-focus-lighter);
         color: var(--base-neutral-font);
         fill: var(--base-neutral-font);
     }
+
+    &.neutral{
+        color: var(--base-neutral-lighter-font);
+        fill: var(--base-neutral-lighter-font);
+        border-color:var(--base-emphase);
+        background-color:var(--base-neutral);
+        &:hover{
+            color: var(--base-neutral-font);
+            fill: var(--base-neutral-font);
+            background-color:var(--base-neutral-lighter);
+        }
+        &:active{
+            border-color:var(--base-neutral-lighter);
+        }
+    }
+    &.primary{
+        border-color:var(--base-emphase);
+        background-color:var(--base-emphase);
+        &:hover{
+            background-color:var(--base-emphase-lighter);
+        }
+        &:active{
+            border-color:var(--base-emphase-darker);
+        }
+    }
+
+    &.secondary{
+        background-color:var(--base-secondary);
+        &:hover{
+            background-color:var(--base-secondary-lighter);
+        }
+        &:active{
+            border-color:var(--base-secondary-darker);
+        }
+    }
+
 }
 
 input[type="text"]{
