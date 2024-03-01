@@ -47,46 +47,46 @@
 
 :root {
     --endpoint-font-color: #3b4151;
-    --endpoint-verb-font-color: #ffffff;
+    --endpoint-verb-font-color: #3b4151;
     /** GET---------------------------------------*/
-    --endpoint-get-background: #5A708C;
+    --endpoint-get-background: #d9d6fe;
     --endpoint-get-background-darker: #3f5470;
-    --endpoint-get-detail-background: #c5cfdb;
+    --endpoint-get-detail-background: #f7f7ff;
     
     /** HEAD-------------------------------------*/
-    --endpoint-head-background: #5F5A8C;
+    --endpoint-head-background: #e7ddbd;
     --endpoint-head-background-darker: #443f70;
-    --endpoint-head-detail-background: #d0cee4;
+    --endpoint-head-detail-background: #f9fbff;
 
     /** POST---------------------------------------*/
-    --endpoint-post-background: #5F8C5A;
+    --endpoint-post-background: #bef0c6;
     --endpoint-post-background-darker: #457040;
-    --endpoint-post-detail-background: #c0d6be;
+    --endpoint-post-detail-background: #f2fcf4;
 
     /** PUT----------------------------------------*/
-    --endpoint-put-background: #8C7B5A;
+    --endpoint-put-background: #b9e6fe;
     --endpoint-put-background-darker: #5f5033;
-    --endpoint-put-detail-background: #e9ddc6;
+    --endpoint-put-detail-background: #f1faff;
 
     /** PATCH-------------------------------------*/
-    --endpoint-patch-background: #46a19c;;
+    --endpoint-patch-background: #fddcab;;
     --endpoint-patch-background-darker: #245452;
-    --endpoint-patch-detail-background: #d4f5f3;
+    --endpoint-patch-detail-background: #fff8ee;
 
     /** DELETE-----------------------------------*/
-    --endpoint-delete-background: #8C5A7B;
+    --endpoint-delete-background: #fecdca;
     --endpoint-delete-background-darker: #623F55;
-    --endpoint-delete-detail-background: #e6d4e0;
+    --endpoint-delete-detail-background: #fff5f4;
 
     /** OPTIONS*/
-    --endpoint-option-background: #8C5A5C;
+    --endpoint-option-background: #ffd4e0;
     --endpoint-option-background-darker: #372E34;
-    --endpoint-option-detail-background: #fcecf6;
+    --endpoint-option-detail-background: #fff6f9;
 
 
     /** TRACE-----------------------------------*/
-    --endpoint-trace-background: #2E3237;
-    --endpoint-trace-background-darker: #1f2227;
+    --endpoint-trace-background: #c1ccda;
+    --endpoint-trace-background-darker: #e6ebf5;
     --endpoint-trace-detail-background: #dbdfe7;
 
     --danger: #dc0000;
@@ -110,9 +110,9 @@
     --base-dark: #1F1E26;
     --base-darker: #14131a;
 
-    --base-emphase-lighter: #6f849e;
-    --base-emphase: #5A708C;
-    --base-emphase-darker: #3f5470;
+    --base-emphase-lighter: #eae8fc;
+    --base-emphase: #d9d6fe;
+    --base-emphase-darker: #a3a1c7;
 
     --base-secondary-lighter: #C880AF;
     --base-secondary: #8C5A7B;
@@ -120,7 +120,7 @@
 
 
     --base-neutral-lighter: #f5ebe3;
-    --base-neutral: #F2EAE4;
+    --base-neutral: #f7f7f7;
     --base-neutral-lighter-font: #554a4a;
     --base-neutral-font: #262424;
     --base-neutral-darker: #dacdc3;
@@ -694,8 +694,8 @@ button{
     border: 2px solid;
     padding: 0.3rem;
     font-weight: bold;
-    color: var(--neutral-light);
-    fill: var(--neutral-light);
+    color: var(--base-dark);
+    fill: var(--base-dark);
     transition: color 0.3s, fill 0.3s, background-color 0.7s,border-color 0.3s;
 
 
