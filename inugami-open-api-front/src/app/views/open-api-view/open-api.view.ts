@@ -85,4 +85,10 @@ export class OpenApiView implements OnInit {
       return result;
     }
 
+    get rootTag() :TreeNode<TagsWrapper>|null {
+      if(this.tags && this.tags.children && this.tags.children.length>0){
+        return this.tags.children[0];
+      }
+      return null;
+    }
 }

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Tags({
-        @Tag(name = "open-api catalog", description = "Inugami Open-API catalog endpoints"),
+        @Tag(name = "inugami", description = "Inugami Open-API catalog endpoints"),
         @Tag(name = "domain", description = "domain endpoints")
 })
 @RequestMapping(path = "ws/v1/domain")

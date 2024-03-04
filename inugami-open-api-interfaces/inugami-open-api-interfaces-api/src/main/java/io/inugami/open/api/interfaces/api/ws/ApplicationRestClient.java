@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tags({
-        @Tag(name = "open-api catalog"),
+        @Tag(name = "inugami"),
         @Tag(name = "application")
 })
 @RequestMapping(path = "ws/v1/application")

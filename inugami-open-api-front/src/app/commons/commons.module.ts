@@ -11,6 +11,7 @@ import { ExtensionComponent } from './components/extension/extension.component';
 import { IconComponent } from './components/icon/icon.component';
 import { SearchTagsComponent } from './components/search-tags/search-tags.component';
 import { SearchMenuComponent } from './components/search_menu/search-menu.component';
+import { TagComponent } from './components/tag/tag.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SearchMenuComponent } from './components/search_menu/search-menu.compon
     IconComponent,
     ExtensionComponent,
     SearchMenuComponent,
-    SearchTagsComponent
+    SearchTagsComponent,
+    TagComponent
   ],
   exports:[
     CodeComponent,
@@ -32,7 +34,8 @@ import { SearchMenuComponent } from './components/search_menu/search-menu.compon
     IconComponent,
     ExtensionComponent,
     SearchMenuComponent,
-    SearchTagsComponent
+    SearchTagsComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,

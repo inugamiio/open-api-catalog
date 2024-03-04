@@ -1,2 +1,11 @@
 /*
 */
+.search-tags{
+    border-left: 1px dotted;
+    margin-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    .search-tags-main{
+        display: flex;
+        align-items: center;
+    }
+}

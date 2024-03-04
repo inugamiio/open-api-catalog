@@ -1,0 +1,43 @@
+/*
+*/
+.inu-tag{
+    margin: 0.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e7d6d6;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+
+    &:hover{
+            box-shadow: 0 0 1rem 0rem #dbdbdb;
+    }
+    &.level-0{
+        margin: 0rem;
+        margin-bottom: 0rem;
+        border: none;
+        border-radius: 0rem;
+        padding: 0.2rem;
+        &:hover{
+            box-shadow: none;
+    }
+    }
+    .inu-tag-header{
+        display: flex;
+        padding: 0.5rem;
+        .inu-tag-title{
+            flex: 1;
+        }
+    }
+
+    .inu-tag-content{
+        display: none;
+        &.display{
+            display: block;
+        }
+    }
+    .inu-tag-endpoint{
+        display: none;
+        &.display{
+            display: block;
+        }
+    }
+}

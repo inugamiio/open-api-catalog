@@ -163,6 +163,7 @@ export interface TagsWrapper{
     tag?:Tags;
     tags?:Tags[];
     endpoint?:OpenApiPathEndpoint[];
+    display?:boolean;
 }
 
 // ====================================================================================================================

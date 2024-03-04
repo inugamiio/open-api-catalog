@@ -1,3 +1,14 @@
 <div class="search-tags">
+    <ng-container *ngIf="data">
 
+        <div class="search-tags-main">
+            <input type="checkbox" [id]="data.path">
+            <label [for]="data.path">{{data.label}}</label>
+        </div>
+        <div class="search-tags-children" *ngIf="data.children">
+            <ng-container *ngFor="let child of data.children">
+                <inu-search-tags [data]="child"></inu-search-tags>
+            </ng-container>
+        </div>
+    </ng-container>
 </div>

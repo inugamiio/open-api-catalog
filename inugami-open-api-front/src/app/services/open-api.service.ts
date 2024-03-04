@@ -68,7 +68,7 @@ export class OpenApiService {
                 root.value.endpoint.push(endpoint.endpoint);
             }
             else{
-                const fullPath = endpoint.tags.join('/');
+                const fullPath = endpoint.tags.map(item=> item.name).join('/');
                 let node = this.createOrGetBucket(fullPath, buffer);
                 if(!node.value){
                     node.value={};
@@ -78,13 +78,9 @@ export class OpenApiService {
                 }   
                 node.value.endpoint.push(endpoint.endpoint);
 
-                const parent = this.createOrGetBucket(endpoint.tags.slice(1).join('/'), buffer);
-                if(!this.haveChildren(parent,node)){
-                    if(!parent.children){
-                        parent.children = [];
-                    }
-                    parent.children.push(node);
-                }
+                this.addChildInParent(node,endpoint.tags.slice(0, endpoint.tags.length-1),buffer);
+
+               
             }
         }
 
@@ -99,6 +95,24 @@ export class OpenApiService {
 
         console.log('resolveTags', result);
         return result;
+    }
+
+
+    private  addChildInParent(node:TreeNode<TagsWrapper>, tags: Tags[], buffer:any){
+
+        const parent = tags.length==0 ? this.createOrGetBucket('/', buffer)
+                                      : this.createOrGetBucket(tags.map(item=> item.name).join('/'), buffer);
+        
+        if(!this.haveChildren(parent,node)){
+            if(!parent.children){
+                parent.children = [];
+            }
+            parent.children.push(node);
+        }
+
+        if(tags.length>=1){
+            this.addChildInParent(parent,tags.slice(0, tags.length-1),buffer);
+        }
     }
 
     private haveChildren(parent:TreeNode<TagsWrapper>,node:TreeNode<TagsWrapper> ):boolean{
@@ -118,7 +132,13 @@ export class OpenApiService {
         if (result) {
             return result;
         }
-        result = {path : path};
+        
+        const pathParts = path.split('/');
+
+        result = {
+            path : path,
+            label: pathParts[pathParts.length-1]
+        };
         buffer[path] = result;
         return result;
     }

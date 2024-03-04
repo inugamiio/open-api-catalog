@@ -1,15 +1,14 @@
 <section *ngIf="data">
     <div class="content open-api-view">
         <aside>
-            <inu-search-menu [data]="apis" (change)="searchChange($event)"></inu-search-menu>
+            <inu-search-menu [data]="rootTag" (change)="searchChange($event)"></inu-search-menu>
         </aside>
-        <div *ngIf="data.paths" class="endpoints">
-            <div *ngFor="let endpoint of data.paths">
-                <ng-container *ngIf="canDisplay(endpoint)">
-                <inu-endpoint [endpoint]="endpoint" [schemas]="schemas"></inu-endpoint>
-                </ng-container>
-            </div>
+        <div  *ngIf="rootTag" class="tags">
+            <inu-tag [data]="rootTag"
+                     [schemas]="schemas"
+                     [searchData]="searchData">
+
+            </inu-tag>
         </div>
-        
     </div>
 </section>

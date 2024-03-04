@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tags({
+        @Tag(name = "example", description = "Open API example"),
         @Tag(
                 name = "domain-application",
                 description = "Expose basic application API",
@@ -55,7 +56,6 @@ import java.util.List;
                         }
                 )
         ),
-        @Tag(name = "example", description = "Open API example"),
         @Tag(name = "user", description = "Allows to manage users")
 })
 @RequestMapping(path = "example/v1")
