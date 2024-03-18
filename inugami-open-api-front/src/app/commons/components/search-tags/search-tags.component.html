@@ -2,12 +2,12 @@
     <ng-container *ngIf="data">
 
         <div class="search-tags-main">
-            <input type="checkbox" [id]="data.path">
+            <input type="checkbox" [id]="data.path" [checked]="[data.selected]" (change)="onSelectedChange($event)" #input>
             <label [for]="data.path">{{data.label}}</label>
         </div>
         <div class="search-tags-children" *ngIf="data.children">
             <ng-container *ngFor="let child of data.children">
-                <inu-search-tags [data]="child"></inu-search-tags>
+                <inu-search-tags [data]="child" #children [parent]="currentComponent"></inu-search-tags>
             </ng-container>
         </div>
     </ng-container>

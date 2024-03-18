@@ -25,8 +25,6 @@ export class OpenApiService {
     // API
     // =================================================================================================================
     public resolveTags(openApis: OpenApi[]): TreeNode<TagsWrapper> {
-        const children: TreeNode<TagsWrapper>[] = [];
-
         const documentedTags: Tags[] = [];
         for (let api of openApis) {
             if (api.tags) {
@@ -40,14 +38,12 @@ export class OpenApiService {
             }
         }
 
-
-
-
         const endpoints = this.extractEndpoints(openApis);
         const allTags: Tags[] = documentedTags.concat([]);
         for (let endpoint of endpoints) {
             for (let tag of endpoint.tags) {
                 if (!this.tagExists(tag, allTags)) {
+                    tag.selected=true;
                     allTags.push(tag);
                 }
             }
@@ -79,11 +75,8 @@ export class OpenApiService {
                 node.value.endpoint.push(endpoint.endpoint);
 
                 this.addChildInParent(node,endpoint.tags.slice(0, endpoint.tags.length-1),buffer);
-
-               
             }
         }
-
 
 
         const result: TreeNode<TagsWrapper> = {

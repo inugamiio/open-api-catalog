@@ -158,6 +158,7 @@ export interface Tags{
     name:string;
     description?:string;
     externalDocs?:ExternalDocs;
+    selected?:boolean;
 }
 export interface TagsWrapper{
     tag?:Tags;

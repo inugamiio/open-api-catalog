@@ -762,3 +762,11 @@ input[type="text"]{
 .search-tags{
     border-color: var(--base-emphase);
 }
+
+.inu-tag{
+    header{
+        .inu-tag-title{
+            font-weight: bold;
+        }
+    }
+}
