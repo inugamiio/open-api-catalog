@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, In
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Tags, TagsWrapper } from '../../models/open-api.model';
 import { TreeNode } from '../../models/select-item.model';
+import { INU_ICON } from '../icon/icons';
 
 
 export const SEARCH_TAGS_HANDLER_ACCESSOR: any = {
@@ -30,6 +31,8 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
     @ViewChildren('children') children!: SearchTagsComponent[]|null;
     @ViewChild('input') input!: ElementRef|null;
 
+    checkedCross = INU_ICON.checked;
+
     /**************************************************************************
     * CONSTRUCTOR
     **************************************************************************/
@@ -43,6 +46,11 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
 
 
     ngOnInit(): void {
+        if(this.data){
+            if(this.data.selected == undefined){
+                this.data.selected = true;
+            }
+        }
     }
 
     private updateValue() {
@@ -52,37 +60,46 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
     /**************************************************************************
     * EVENT
     **************************************************************************/
-    onSelectedChange(event: any) {
-        if (event.target.checked) {
-            this.onSelected();
-        } else {
-            this.onDeselected();
+    selectChildren(){
+        if(!this.data){
+            return;
         }
-        setTimeout(()=> this.changeDetectorRef.detectChanges(), 100);
+        this.data.selected = true;
+
+        if(this.children){
+            for(let child of this.children){
+                child.selectChildren();
+            }
+        }
+    }
+
+
+    onSelectedChange() {
+        if(!this.data){
+            return;
+        }
+        if (this,this.data.selected) {
+            this.onDeselected();
+        } else {
+            this.onSelected();
+        }
     }
 
     onSelected() {
-        console.log('onSelected')
-        if(this.input &&  this.input.nativeElement){
-            this.input.nativeElement.setAttribute('checked', 'checked');
-        }
+        
         if (this.data) {
             this.data.selected = true;
         }
-        console.log(this.uri, this.data);
+        
         if (this.parent != null) {
             this.parent.onSelected();
         }
     }
     onDeselected() {
-        console.log('onDeselected')
+        
         if(this.data){
             this.data.selected=false;
         }
-        if(this.input &&  this.input.nativeElement){
-            this.input.nativeElement.setAttribute('checked', '');
-        }
-        console.log(this.uri, this.data);
         if(this.children){
             for(let child of this.children){
                 child.onDeselected();

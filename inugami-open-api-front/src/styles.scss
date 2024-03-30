@@ -216,7 +216,7 @@ body {
     }
     .inu-icon{
         height: 3rem;
-        width: 4rem;
+        width: 3rem;
         fill: var(--neutral-light);
         display: block;
         .inugami-red{
@@ -769,4 +769,56 @@ input[type="text"]{
             font-weight: bold;
         }
     }
+}
+
+
+.search-tags{
+    border-left: 1px dotted;
+    margin-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    .search-tags-main{
+        display: flex;
+        align-items: center;
+    }
+
+
+    .search-tags-checkbox{
+        border: none;
+        background: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .search-tags-checkbox-component{
+            display: block;
+            height: 1rem;
+            width: 1rem;
+            border: 2px solid var(--neutral);
+            border-radius: 0.2rem;
+            &.selected{
+                border-color:var( --base-emphase-darker);
+                fill:var(--base-emphase-darker);
+            }
+            
+            .inu-icon{
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: center;
+                svg{
+                    height: 0.8rem !important;
+                    width: 0.8rem !important;
+                }
+            }
+        }
+        label{
+            padding-left: 0.5rem;
+        }
+
+    }
+    
+               
+    
+
+    
 }
