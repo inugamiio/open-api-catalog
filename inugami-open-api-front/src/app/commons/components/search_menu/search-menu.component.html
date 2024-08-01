@@ -1,0 +1,54 @@
+<menu  #component [class]="displayStyleclass" >
+    
+    <div class="search-menu-content">
+        <div class="search-menu-action">
+            <button (click)="toggle()"  class="primary">
+                <ng-container *ngIf="display">
+                    <inu-icon [icon]="icons.close"></inu-icon>
+                </ng-container>
+                <ng-container *ngIf="!display">
+                    <inu-icon [icon]="icons.open"></inu-icon>
+                </ng-container>
+            </button>
+        </div>
+        <form [formGroup]="search">
+            <ng-container *ngIf="data">
+                <fieldset class="search-menu-uri">
+                    <legend>Uri</legend>
+                    <input type="text"  formControlName="uri" placeholder="Endpoint uri" (keydown)="onUriChange($event)"/>
+                </fieldset>
+
+                <fieldset class="search-menu-tag">
+                    <legend>Tags</legend>
+                    <inu-search-tags formControlName="tags"></inu-search-tags>
+                </fieldset>
+            
+                <fieldset  class="search-menu-verbs">
+                    <legend>Verbs</legend>
+                    <div class="search-menu-verbs-actions">
+                        <button (click)="selectAllVerbs()" class="primary">All</button>
+                        <button (click)="selectAnyVerbs()" class="neutral">None</button>
+                    </div>
+                    <ng-container formArrayName="verbs">
+                        <div [formGroupName]="i" *ngFor="let item of verbsField?.controls; let i = index">
+                            <input type="checkbox" formControlName="checked" [id]="'verb-'+i">
+                            <label [for]="'verb-'+i">{{verbsDefault[i]}}</label>
+                        </div>
+                    </ng-container>
+                </fieldset>
+            </ng-container>
+        </form>
+    </div>
+    
+   
+    <div class="search-menu-action">
+        <button (click)="toggle()" class="primary">
+            <ng-container *ngIf="display">
+                <inu-icon [icon]="icons.close"></inu-icon>
+            </ng-container>
+            <ng-container *ngIf="!display">
+                <inu-icon [icon]="icons.open"></inu-icon>
+            </ng-container>
+        </button>
+    </div>
+</menu>

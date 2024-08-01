@@ -1,0 +1,59 @@
+<ng-container *ngIf="data">
+
+    <div class="description">{{data.description}}</div>
+    <div class="content-type">{{data.contentType}}</div>
+    <div class="schema" *ngIf="data.schema">
+        <ng-container *ngIf="data.schema.ref">
+            <inu-code [objectRef]="data.schema.ref"
+                        [objectRefType]="data.schema.type"
+                        [schemas]="schemas"></inu-code>
+        </ng-container>
+    </div>
+
+
+    <div class="response-examples">
+        <ng-container *ngFor="let example of data.examples; let index = index; let isFirst = first; let isOdd = odd;">
+            <div class="response-example" [class.first]="isFirst" [class.odd]="isOdd" [class.error]="isError">
+                <div class="response-example-header" (click)="toggleExample(index)">
+                    <div class="response-example-header-labels" >
+                        <span class="response-example-header-name" >{{example.name}}</span>
+                        <span class="response-example-header-summary">{{example.summary}}</span>
+                    </div>
+                    
+                    <span class="button open" [class.displayStatus]="getExampleDisplayStatus(index)">
+                        <inu-icon [icon]="icon.angleUp" *ngIf="isExampleDisplay(index)"></inu-icon>
+                        <inu-icon [icon]="icon.angleDown" *ngIf="isExampleNotDisplay(index)"></inu-icon>
+                    </span>
+                </div>
+                <div  class="response-example-content" [class.display]="getExampleDisplayStatus(index)">
+                    
+                    <dl class="example-content">
+                        <dt>Description</dt>
+                        <dd>{{example.description}}</dd>
+
+                        <dt>External value</dt>
+                        <dd>{{example.externalValue}}</dd>
+
+                        <ng-container *ngIf="example.extensions" >
+                            <ng-container *ngFor="let extension of example.extensions;" >
+                                <dt>{{extension.name}}</dt>
+                                <dd><inu-extension [data]="extension.value"></inu-extension></dd>
+                            </ng-container>    
+                        </ng-container>
+                    
+                    </dl>
+
+
+
+
+                    <ng-container *ngIf="example.value" >
+                        <inu-code [data]="example.value" [schemas]="schemas"></inu-code>
+                    </ng-container>
+                   
+
+                </div>
+
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

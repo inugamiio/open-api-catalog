@@ -1,0 +1,10 @@
+.open-api-view{
+    display: flex;   
+    
+
+    .endpoints,
+    .tags{
+        flex: 1;
+    }
+    
+}

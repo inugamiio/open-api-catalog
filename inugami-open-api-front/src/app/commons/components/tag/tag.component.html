@@ -1,0 +1,34 @@
+<section [class]="styleclass" > 
+    <ng-container *ngIf="data">
+        <header class="inu-tag-header" (click)="toggle()" *ngIf="currentLevel>0">
+            <div class="inu-tag-title">{{data.label}}</div>
+            <div class="action">
+                <inu-icon [icon]="icon.angleUp" *ngIf="!display"></inu-icon>
+                <inu-icon [icon]="icon.angleDown" *ngIf="display"></inu-icon>
+            </div>
+        </header>
+
+        <div class="inu-tag-content" [class.display]="display">
+            <div class="inu-tag-endpoints" *ngIf="endpoints">
+                <div *ngFor="let endpoint of endpoints">
+                    <div class="inu-tag-endpoint" [class.display]="canDisplay(endpoint)">
+                        <inu-endpoint [endpoint]="endpoint" [schemas]="schemas"></inu-endpoint>
+                    </div>
+                </div>
+
+              
+            </div>
+    
+            <div class="inu-tag-children" *ngIf="children">
+                <div *ngFor="let child of children">
+                    <inu-tag [data]="child"
+                             [schemas]="schemas"
+                             [searchData]="searchData"
+                             [level]="childLevel">
+                    </inu-tag>
+                </div>
+            </div>
+        </div>
+       
+    </ng-container>
+</section>

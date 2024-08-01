@@ -1,0 +1,20 @@
+<div class="search-tags" >
+    <ng-container *ngIf="data">
+
+        <div class="search-tags-main">
+            <button (click)="onSelectedChange()" (dblclick)="selectChildren()" class="search-tags-checkbox" >
+                <span class="search-tags-checkbox-component" [class.selected]="data?.selected">
+                    <ng-container *ngIf="data.selected">
+                        <inu-icon [icon]="checkedCross"></inu-icon>
+                    </ng-container>
+                </span>
+                <label [for]="data.path">{{data.label}}</label>
+            </button>
+        </div>
+        <div class="search-tags-children" *ngIf="data.children">
+            <ng-container *ngFor="let child of data.children">
+                <inu-search-tags [data]="child" #children [parent]="currentComponent"></inu-search-tags>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

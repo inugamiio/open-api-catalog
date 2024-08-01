@@ -1,0 +1,14 @@
+<section *ngIf="data">
+    <div class="content open-api-view">
+        <aside>
+            <inu-search-menu [data]="rootTag" (change)="searchChange($event)"></inu-search-menu>
+        </aside>
+        <div  *ngIf="rootTag" class="tags">
+            <inu-tag [data]="rootTag"
+                     [schemas]="schemas"
+                     [searchData]="searchData">
+
+            </inu-tag>
+        </div>
+    </div>
+</section>
