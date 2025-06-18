@@ -11,8 +11,10 @@ export interface SearchMenuComponentEventVerb {
     checked: boolean;
 }
 export interface SearchMenuComponentEvent {
-    verbs: SearchMenuComponentEventVerb[],
-    uri?:string
+    verbs?: SearchMenuComponentEventVerb[],
+    uri?:string,
+    tagSelected ?:string,
+    tagUnselected ?:string
 }
 
 
@@ -111,8 +113,20 @@ export class SearchMenuComponent implements OnInit, AfterViewInit {
                 this.sendEvent();
             }
         });
+    }
 
+    selected(path:string ){
+        const event:SearchMenuComponentEvent = {
+            tagSelected:path
+        };
+        this.change.emit(event);
+    }
 
+    unselected(path:string ){
+        const event:SearchMenuComponentEvent = {
+            tagUnselected:path
+        };
+        this.change.emit(event);
     }
     /**************************************************************************
     * ACTIONS

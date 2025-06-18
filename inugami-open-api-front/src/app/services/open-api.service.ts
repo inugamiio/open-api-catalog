@@ -130,6 +130,7 @@ export class OpenApiService {
 
         result = {
             path : path,
+            selected: true,
             label: pathParts[pathParts.length-1]
         };
         buffer[path] = result;

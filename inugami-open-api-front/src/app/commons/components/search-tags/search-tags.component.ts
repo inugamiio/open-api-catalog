@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Tags, TagsWrapper } from '../../models/open-api.model';
 import { TreeNode } from '../../models/select-item.model';
@@ -30,6 +30,11 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
 
     @ViewChildren('children') children!: SearchTagsComponent[]|null;
     @ViewChild('input') input!: ElementRef|null;
+
+    @Output()
+    public selected: EventEmitter<string> = new EventEmitter();
+    @Output()
+    public unselected: EventEmitter<string> = new EventEmitter();
 
     checkedCross = INU_ICON.checked;
 
@@ -78,7 +83,7 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
         if(!this.data){
             return;
         }
-        if (this,this.data.selected) {
+        if (this.data.selected) {
             this.onDeselected();
         } else {
             this.onSelected();
@@ -86,7 +91,6 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
     }
 
     onSelected() {
-        
         if (this.data) {
             this.data.selected = true;
         }
@@ -94,6 +98,8 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
         if (this.parent != null) {
             this.parent.onSelected();
         }
+        this.rootParent.sendSelected(this.data?.path);
+     
     }
     onDeselected() {
         
@@ -105,11 +111,22 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
                 child.onDeselected();
             }
         }
+        this.rootParent.sendUnselectedSelected(this.data?.path);
     }
     /**************************************************************************
     * ACTIONS
     **************************************************************************/
+    sendSelected(path:string|undefined){
+        if(this.selected && path){
+            this.selected.emit(path);
+        }
+    }
 
+    sendUnselectedSelected(path:string|undefined){
+        if(this.unselected && path){
+            this.unselected.emit(path);
+        }
+    }
     /**************************************************************************
     * GETTER
     **************************************************************************/
@@ -125,6 +142,10 @@ export class SearchTagsComponent implements ControlValueAccessor, OnInit, AfterV
 
         return uri == undefined ? '/' : uri;
 
+    }
+
+    get rootParent(): SearchTagsComponent{
+        return this.parent ?  this.parent.rootParent : this;
     }
     /***************************************************************************
     * ControlValueAccessor

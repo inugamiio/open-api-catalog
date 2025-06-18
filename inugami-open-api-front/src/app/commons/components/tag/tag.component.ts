@@ -86,15 +86,24 @@ export class TagComponent implements  OnInit, AfterViewInit {
         return ['inu-tag', `level-${this.currentLevel}`].join(' ');
     }
     canDisplay(endpoint:OpenApiPathEndpoint) : boolean{
+        
         if(!this.searchData){
             return true;
           }
           let result = true;
     
           const verb = endpoint.verb.toUpperCase();
-          const searchVerb = this.searchData.verbs.filter(item=> item.name == verb);
-          if(searchVerb.length>0){
-            result = searchVerb[0].checked;
+          if(this.searchData.verbs){
+            const searchVerb = this.searchData.verbs.filter(item=> item.name == verb);
+            if(searchVerb.length>0){
+              result = searchVerb[0].checked;
+            }
+          }
+        
+          
+          console.log('canDisplay', [this.searchData.tagSelected,this.searchData.tagUnselected] );
+          if(result && this.searchData.tagUnselected){
+            result = endpoint.url.includes(this.searchData.tagUnselected);
           }
     
           if(result && this.searchData.uri){

@@ -51,7 +51,7 @@ export class OpenApiView implements OnInit {
     // EVENTS
     // =================================================================================================================
     searchChange(event:SearchMenuComponentEvent|any){
-      if(event.verbs ){
+      if(event.verbs ){  
         this.searchData = event;
       }
       
@@ -71,10 +71,13 @@ export class OpenApiView implements OnInit {
       let result = true;
 
       const verb = path.verb.toUpperCase();
-      const searchVerb = this.searchData.verbs.filter(item=> item.name == verb);
-      if(searchVerb.length>0){
-        result = searchVerb[0].checked;
+      if(this.searchData.verbs){
+        const searchVerb = this.searchData.verbs.filter(item=> item.name == verb);
+        if(searchVerb.length>0){
+          result = searchVerb[0].checked;
+        }
       }
+   
 
       if(result && this.searchData.uri){
         const searchUri = this.searchData.uri.toUpperCase();
